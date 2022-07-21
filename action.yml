@@ -20,6 +20,8 @@ runs:
     - name: "Get current repo"
       uses: actions/checkout@v3
       with:
+        repository: swift-nav/swift-cli-publisher
+        token: ${{ inputs.token }}
         clean: false
 
     - shell: bash
@@ -33,8 +35,6 @@ runs:
         repository: swift-nav/package-registry
         token: ${{ inputs.token }}
         clean: false
-        path: ''
-        ref: ''
 
     - name: "Ensures release is not linked"
       shell: bash
