@@ -22,7 +22,7 @@ runs:
       with:
         repository: swift-nav/swift-cli-publisher
         token: ${{ inputs.token }}
-        clean: 'false'
+        clean: 'true'
 
     - shell: bash
       run: |
