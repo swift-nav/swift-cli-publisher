@@ -14,27 +14,18 @@ inputs:
 runs:
   using: composite
   steps:
-    - shell: bash
-      run: ls
-
-    - name: "Get current repo"
-      uses: actions/checkout@v3
-      with:
-        repository: swift-nav/swift-cli-publisher
-        token: ${{ inputs.token }}
-        clean: 'true'
-
-    - shell: bash
-      run: |
-        ls
-        cat README.md
-
     - name: "Get package registry data"
       uses: actions/checkout@v3
       with:
         repository: swift-nav/package-registry
         token: ${{ inputs.token }}
         clean: 'false'
+        path: '.github/package-registry'
+
+    - shell: bash
+      run: |
+        find .
+        cd .github/package-registry
 
     - name: "Ensures release is not linked"
       shell: bash
