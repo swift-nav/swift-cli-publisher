@@ -27,6 +27,7 @@ runs:
       run: |
         find .
         mv -v ./package-registry/* .
+        rm ./package-registry
 
     - name: "Ensures release is not linked"
       shell: bash
@@ -55,5 +56,5 @@ runs:
           /repos/swift-nav/package-registry/pulls \
           -f title='Amazing new feature'
          -f body='Please pull these awesome changes in!'
-         -f head='superbot:${{ inputs.name }}-${{ inputs.version }}'
+         -f head='${{ github.repository }}:main'
          -f base='master'
