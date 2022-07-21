@@ -14,7 +14,13 @@ inputs:
 runs:
   using: composite
   steps:
+    - shell: bash
+      run: ls
+
     - uses: actions/checkout@v3
+
+    - shell: bash
+      run: ls
 
     - name: "Get package registry data"
       uses: actions/checkout@v3
