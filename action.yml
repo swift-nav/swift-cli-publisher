@@ -10,7 +10,6 @@ inputs:
   version:
     description: "Version of release"
     required: true
-
 runs:
   using: composite
   steps:
@@ -20,12 +19,14 @@ runs:
         repository: swift-nav/package-registry
         token: ${{ inputs.token }}
         clean: 'false'
-        path: '.github/package-registry'
+        path: 'package-registry'
 
-    - shell: bash
+    # using this because clean: false isn't working
+    - name: "Extract cloned repo"
+      shell: bash
       run: |
         find .
-        cd .github/package-registry
+        mv -v ./package-registry .
 
     - name: "Ensures release is not linked"
       shell: bash
