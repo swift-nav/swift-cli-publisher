@@ -46,6 +46,8 @@ runs:
 
     - name: "Create pull request from changes"
       shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.token }}
       run: |
         gh api \
           --method POST \
