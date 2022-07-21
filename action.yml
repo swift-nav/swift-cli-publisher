@@ -23,7 +23,9 @@ runs:
         clean: false
 
     - shell: bash
-      run: ls
+      run: |
+        ls
+        cat README.md
 
     - name: "Get package registry data"
       uses: actions/checkout@v3
