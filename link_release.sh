@@ -1,4 +1,7 @@
+#!/usr/bin/env bash
 TEMPLATE_FILE="template.json"
+
+echo "Generating new $VERSION release for $NAME"
 
 NEW_RELEASE=$(jq \
   --arg name "$NAME" \

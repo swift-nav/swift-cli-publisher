@@ -42,7 +42,7 @@ runs:
         VERSION: ${{ inputs.version }}
       run: |
         ls
-        sh link_release.sh
+        bash link_release.sh
 
     - name: "Create pull request from changes"
       shell: bash
