@@ -22,7 +22,7 @@ runs:
       with:
         repository: swift-nav/swift-cli-publisher
         token: ${{ inputs.token }}
-        clean: false
+        clean: 'false'
 
     - shell: bash
       run: |
@@ -34,7 +34,7 @@ runs:
       with:
         repository: swift-nav/package-registry
         token: ${{ inputs.token }}
-        clean: false
+        clean: 'false'
 
     - name: "Ensures release is not linked"
       shell: bash
