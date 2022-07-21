@@ -1,6 +1,9 @@
 name: "Registry release listener"
 description: "Listens for new releases on registry packages"
 inputs:
+  token:
+    description: "Github Access Token"
+    required: true
   name:
     description: "Name of package"
     required: true
@@ -15,7 +18,7 @@ runs:
       uses: actions/checkout@v3
       with:
         repository: swift-nav/package-registry
-        token: ${{ secrets.SWIFTNAV_TRAVIS_GITHUB_TOKEN }}
+        token: ${{ inputs.token }}
         path: ''
         ref: ''
 
