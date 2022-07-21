@@ -17,8 +17,13 @@ runs:
     - shell: bash
       run: ls
 
+    - name: "Get current repo"
+      uses: actions/checkout@v3
+      with:
+        clean: false
+
     - shell: bash
-      run: git config --global init.defaultBranch main
+      run: ls
 
     - name: "Get package registry data"
       uses: actions/checkout@v3
