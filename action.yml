@@ -1,23 +1,46 @@
-name: 'Hello World'
-description: 'Greet someone'
+name: "Registry release listener"
+description: "Listens for new releases on registry packages"
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  name:
+    description: "Name of package"
     required: true
-    default: 'World'
-outputs:
-  random-number:
-    description: "Random number"
-    value: ${{ steps.random-number-generator.outputs.random-number }}
+  version:
+    description: "Version of release"
+    required: true
+
 runs:
-  using: "composite"
+  using: composite
   steps:
-    - run: echo Hello ${{ inputs.who-to-greet }}.
+    - name: "Get package registry data"
+      uses: actions/checkout@v3
+      with:
+        repository: swift-nav/package-registry
+        token: ${{ secrets.SWIFTNAV_TRAVIS_GITHUB_TOKEN }}
+        path: ''
+        ref: ''
+
+    - name: "Ensures release is not linked"
       shell: bash
-    - id: random-number-generator
-      run: echo "::set-output name=random-number::$(echo $RANDOM)"
+      run: |
+        if cat data/${{ inputs.name }} | grep "\"version\":\"${{ inputs.version }}\""; then
+          exit 1
+        fi
+
+    - name: "Modify data to link release"
       shell: bash
-    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      env:
+        NAME: ${{ inputs.name }}
+        VERSION: ${{ inputs.version }}
+      run: link_release.sh
+
+    - name: "Create pull request from changes"
       shell: bash
-    - run: goodbye.sh
-      shell: bash
+      run: |
+        gh api \
+          --method POST \
+          -H "Accept: application/vnd.github+json" \
+          /repos/swift-nav/package-registry/pulls \
+          -f title='Amazing new feature'
+         -f body='Please pull these awesome changes in!'
+         -f head='superbot:${{ inputs.name }}-${{ inputs.version }}'
+         -f base='master'

@@ -1,0 +1,19 @@
+{
+  "name": "",
+  "version": "",
+  "base_dir": {
+    "linux": "",
+    "macos": "",
+    "windows": ""
+  },
+  "download": {
+    "GitHub": {
+      "project_slug": "",
+      "linux": "",
+      "macos": "",
+      "windows": ""
+    }
+  },
+  "tools": [],
+  "linked": false
+}
