@@ -26,7 +26,7 @@ runs:
       shell: bash
       run: |
         find .
-        mv -v ./package-registry .
+        mv -v ./package-registry/* .
 
     - name: "Ensures release is not linked"
       shell: bash
@@ -40,9 +40,7 @@ runs:
       env:
         NAME: ${{ inputs.name }}
         VERSION: ${{ inputs.version }}
-      run: |
-        ls
-        sh link_release.sh
+      run: link_release.sh
 
     - name: "Create pull request from changes"
       shell: bash
