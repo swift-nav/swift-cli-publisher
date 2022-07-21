@@ -34,7 +34,7 @@ runs:
       env:
         NAME: ${{ inputs.name }}
         VERSION: ${{ inputs.version }}
-      run: link_release.sh
+      run: sh link_release.sh
 
     - name: "Create pull request from changes"
       shell: bash
