@@ -15,8 +15,6 @@ runs:
   using: composite
   steps:
     - uses: actions/checkout@v3
-      with:
-        clean: false
 
     - name: "Get package registry data"
       uses: actions/checkout@v3
