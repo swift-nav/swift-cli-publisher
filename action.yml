@@ -14,14 +14,18 @@ inputs:
 runs:
   using: composite
   steps:
+    - uses: actions/checkout@v3
+      with:
+        clean: false
+
     - name: "Get package registry data"
       uses: actions/checkout@v3
       with:
         repository: swift-nav/package-registry
         token: ${{ inputs.token }}
+        clean: false
         path: ''
         ref: ''
-        clean: false
 
     - name: "Ensures release is not linked"
       shell: bash
