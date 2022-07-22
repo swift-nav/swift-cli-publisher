@@ -27,7 +27,7 @@ runs:
       run: |
         find .
         mv -v ./package-registry/* .
-        rm ./package-registry
+        rm -r ./package-registry
 
     - name: "Ensures release is not linked"
       shell: bash
@@ -57,4 +57,4 @@ runs:
           -f title='Amazing new feature'
          -f body='Please pull these awesome changes in!'
          -f head='${{ github.repository }}:main'
-         -f base='master'
+         -f base='main'
