@@ -35,7 +35,7 @@ runs:
       shell: bash
       run: |
         find .
-        mv -v *(.) package-registry
+        mv -v ./*(.) ./package-registry
 
     - name: "Ensures release is not linked"
       shell: bash
