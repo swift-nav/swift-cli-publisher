@@ -22,49 +22,40 @@ inputs:
 runs:
   using: composite
   steps:
+    # quick fix under path package-registry as clean doesn't work.
     - name: "Get package registry data"
       uses: actions/checkout@v3
       with:
         repository: swift-nav/package-registry
         token: ${{ inputs.token }}
-        clean: 'false'
         path: 'package-registry'
 
-#    # using this because clean: false isn't working
-#    - name: "Extract cloned repo"
-#      shell: bash
-#      run: |
-#        find .
-#        mv -v ./package-registry/* .
-#        rm -r ./package-registry
-#
-#    - name: "Ensures release is not linked"
-#      shell: bash
-#      run: |
-#        if cat data/${{ inputs.name }} | grep "\"version\":\"${{ inputs.version }}\""; then
-#          exit 1
-#        fi
-#
-#    - name: "Modify data to link release"
-#      shell: bash
-#      env:
-#        NAME: ${{ inputs.name }}
-#        VERSION: ${{ inputs.version }}
-#      run: |
-#        ls
-#        bash link_release.sh
+    - name: "Ensures release is not linked"
+      shell: bash
+      working-directory: package-registry
+      run: |
+        if cat data/${{ inputs.name }} | grep "\"version\":\"${{ inputs.version }}\""; then
+          exit 1
+        fi
 
-    - name: "Create pull request from changes"
+    - name: "Modify data to link release"
       shell: bash
       working-directory: package-registry
       env:
+        NAME: ${{ inputs.name }}
+        VERSION: ${{ inputs.version }}
+      run:
+        mv ../link_release.sh ../template.json .
+        bash link_release.sh
+
+    - name: "Create pull request from changes"
+      shell: bash
+      env:
         GH_TOKEN: ${{ inputs.token }}
       run: |
-        touch hello
-        
         git config --global user.email "swiftnav-travis@swift-nav.com"
         git config --global user.name "swiftnav-travis"
-        git switch -c "coolbot/update"
+        git switch -c "coolbot/update-${{inputs.name}}-${{inputs.version}}"
         git add .
         git commit -m "Updating release for ${{ inputs.name }}-${{ inputs.version}}"
         git push --set-upstream origin coolbot/update
