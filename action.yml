@@ -50,4 +50,7 @@ runs:
       env:
         GH_TOKEN: ${{ inputs.token }}
       run: |
+        git switch -c "coolbot/update"
+        git add .
+        git commit -m "Updating release for ${{ inputs.name }}-${{ inputs.version}}"
         gh pr create --title "The bug is fixed" --body "Everything works again"
