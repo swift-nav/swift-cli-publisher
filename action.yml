@@ -31,15 +31,15 @@ runs:
         path: 'package-registry'
 
     # using this because clean: false isn't working
-    - name: "Extract cloned repo"
+    - name: "Move into package-registry"
       shell: bash
       run: |
         find .
-        mv -v ./package-registry/* .
-        rm -r ./package-registry
+        mv -v *(.) package-registry
 
     - name: "Ensures release is not linked"
       shell: bash
+      working-directory: package-registry
       run: |
         if cat data/${{ inputs.name }} | grep "\"version\":\"${{ inputs.version }}\""; then
           exit 1
@@ -47,15 +47,15 @@ runs:
 
     - name: "Modify data to link release"
       shell: bash
+      working-directory: package-registry
       env:
         NAME: ${{ inputs.name }}
         VERSION: ${{ inputs.version }}
-      run: |
-        ls
-        bash link_release.sh
+      run: bash link_release.sh
 
     - name: "Create pull request from changes"
       shell: bash
+      working-directory: package-registry
       env:
         GH_TOKEN: ${{ inputs.token }}
       run: |
@@ -66,4 +66,6 @@ runs:
         git commit -m "Updating release for ${{ inputs.name }}-${{ inputs.version}}"
         git push --set-upstream origin coolbot/update
         
-        gh pr create --title "The bug is fixed" --body "Everything works again"
+        gh pr create \
+          --title "Release for ${{inputs.name}}-${{inputs.version}}" \
+          --body "Merge if everything looks good!"
