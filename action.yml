@@ -64,6 +64,6 @@ runs:
         git switch -c "coolbot/update"
         git add .
         git commit -m "Updating release for ${{ inputs.name }}-${{ inputs.version}}"
-        git push
+        git push --set-upstream origin coolbot/update
         
         gh pr create --title "The bug is fixed" --body "Everything works again"
