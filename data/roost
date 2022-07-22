@@ -1,0 +1,1 @@
+{"name":"roost","version":"0.8.1","base_dir":{"linux":"roost-0.8.1-linux_x86_64","macos":"roost-0.8.1-darwin","windows":""},"download":{"GitHub":{"project_slug":"swift-nav/roost","linux":"roost-0.8.1-linux_x86_64.tgz","macos":"roost-0.8.1-darwin.tgz","windows":""}},"tools":["roost"],"linked":false}

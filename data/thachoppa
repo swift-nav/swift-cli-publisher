@@ -1,0 +1,1 @@
+{"name":"thachoppa","version":"v1.2.0","base_dir":{"linux":"","macos":"","windows":""},"download":{"GitHub":{"project_slug":"swift-nav/thachoppa","linux":"sbp_chopper-v1.2.0-x86_64-linux-gnu.tar.gz","macos":"sbp_chopper-v1.2.0-x86_64-apple-darwin19.6.0.tar.gz","windows":"sbp_chopper-v1.2.0-x86_64-pc-windows-msvc.zip"}},"tools":["sbp-chopper"],"linked":false}

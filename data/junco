@@ -1,0 +1,1 @@
+{"name":"junco","version":"v1.2.0","base_dir":{"linux":"","macos":"","windows":""},"download":{"GitHub":{"project_slug":"swift-nav/junco","linux":"junco-v1.2.0-x86_64-unknown-linux-musl.zip","macos":"junco-v1.2.0-x86_64-apple-darwin.zip","windows":""}},"tools":["junco"],"linked":false}

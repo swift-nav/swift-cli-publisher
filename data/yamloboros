@@ -1,0 +1,1 @@
+{"name":"yamloboros","version":"v1.0.16","base_dir":{"linux":"","macos":"","windows":""},"download":{"GitHub":{"project_slug":"swift-nav/yamloboros","linux":"yamloboros-v1.0.16-x86_64-unknown-linux-musl.zip","macos":"yamloboros-v1.0.16-x86_64-apple-darwin.zip","windows":""}},"tools":["json2yaml", "yaml2json"],"linked":false}

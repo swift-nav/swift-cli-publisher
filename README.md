@@ -1,2 +1,2 @@
-# swift-cli-publisher
-Action to sync release updates to registrar
+# package-registry
+Package Metadata for swift-cli

@@ -1,0 +1,1 @@
+{"name":"ICBINS","version":"0.5.1","base_dir":{"linux":"sbp2csv-0.5.1-linux_x86_64","macos":"sbp2csv-0.5.1-darwin","windows":""},"download":{"GitHub":{"project_slug":"swift-nav/ICBINS","linux":"sbp2csv-0.5.1-linux_x86_64.tgz","macos":"sbp2csv-0.5.1-darwin.tgz","windows":""}},"tools":["sbp2csv"],"linked":false}

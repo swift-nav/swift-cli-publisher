@@ -1,0 +1,1 @@
+{"name":"sbp-filter","version":"1.1.0","base_dir":{"linux":"","macos":"","windows":""},"download":{"GitHub":{"project_slug":"swift-nav/sbp-filter","linux":"sbp-filter-v1.1.0-x86_64-unknown-linux-musl.zip","macos":"sbp-filter-v1.1.0-x86_64-apple-darwin.zip","windows":"sbp-filter-v-x86_64-pc-windows-msvc.zip"}},"tools":["sbp-filter"],"linked":false}
