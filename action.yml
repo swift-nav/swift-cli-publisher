@@ -32,7 +32,7 @@ runs:
 
     - name: "Move script into package-registry"
       shell: bash
-      run: mv -v ../link_release.sh ../template.json ./
+      run: mv -v link_release.sh template.json package-registry
 
     - name: "Ensures release is not linked"
       shell: bash
