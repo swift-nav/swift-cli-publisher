@@ -4,6 +4,7 @@ inputs:
   token:
     description: "Github Access Token"
     required: true
+
   # not sure why defaults not working...
   gh-name:
     description: "Github account name"
@@ -13,12 +14,15 @@ inputs:
     description: "Github account email"
     required: true
     default: "swiftnav-travis@swift-nav.com"
+
   name:
     description: "Name of package"
     required: true
+
   version:
     description: "Version of release"
     required: true
+
 runs:
   using: composite
   steps:
@@ -63,7 +67,7 @@ runs:
         git add .
         git commit -m "Updating release for ${{ inputs.name }}-${{ inputs.version}}"
         git push --set-upstream origin coolbot/update-${{inputs.name}}-${{inputs.version}}
-        
         gh pr create \
           --title "Release for ${{inputs.name}}-${{inputs.version}}" \
-          --body "Merge if everything looks good!"
+          --body "Automated registry sync for ${{ inputs.name }} ${{ inputs.version }}"
+          --reviewer adrian-kong, isaactorz, silverjam
