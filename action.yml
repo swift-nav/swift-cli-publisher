@@ -30,29 +30,29 @@ runs:
         clean: 'false'
         path: 'package-registry'
 
-    # using this because clean: false isn't working
-    - name: "Extract cloned repo"
-      shell: bash
-      run: |
-        find .
-        mv -v ./package-registry/* .
-        rm -r ./package-registry
-
-    - name: "Ensures release is not linked"
-      shell: bash
-      run: |
-        if cat data/${{ inputs.name }} | grep "\"version\":\"${{ inputs.version }}\""; then
-          exit 1
-        fi
-
-    - name: "Modify data to link release"
-      shell: bash
-      env:
-        NAME: ${{ inputs.name }}
-        VERSION: ${{ inputs.version }}
-      run: |
-        ls
-        bash link_release.sh
+#    # using this because clean: false isn't working
+#    - name: "Extract cloned repo"
+#      shell: bash
+#      run: |
+#        find .
+#        mv -v ./package-registry/* .
+#        rm -r ./package-registry
+#
+#    - name: "Ensures release is not linked"
+#      shell: bash
+#      run: |
+#        if cat data/${{ inputs.name }} | grep "\"version\":\"${{ inputs.version }}\""; then
+#          exit 1
+#        fi
+#
+#    - name: "Modify data to link release"
+#      shell: bash
+#      env:
+#        NAME: ${{ inputs.name }}
+#        VERSION: ${{ inputs.version }}
+#      run: |
+#        ls
+#        bash link_release.sh
 
     - name: "Create pull request from changes"
       shell: bash
