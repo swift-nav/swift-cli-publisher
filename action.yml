@@ -54,7 +54,7 @@ runs:
           --method POST \
           -H "Accept: application/vnd.github+json" \
           /repos/swift-nav/package-registry/pulls \
-          -f title='Amazing new feature'
-         -f body='Please pull these awesome changes in!'
-         -f head='${{ github.repository }}:main'
-         -f base='main'
+          -f title='Amazing new feature' \
+          -f body='Please pull these awesome changes in!' \
+          -f head='${{ github.repository }}:main' \
+          -f base='main'
