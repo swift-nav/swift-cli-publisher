@@ -4,6 +4,14 @@ inputs:
   token:
     description: "Github Access Token"
     required: true
+  gh-name:
+    description: "Github account name"
+    required: false
+    default: "swiftnav-travis"
+  gh-email:
+    description: "Github account email"
+    required: false
+    default: "swiftnav-travis@swift-nav.com"
   name:
     description: "Name of package"
     required: true
@@ -50,6 +58,8 @@ runs:
       env:
         GH_TOKEN: ${{ inputs.token }}
       run: |
+        git config --global user.email "${{ inputs.gh_email }}"
+        git config --global user.name "${{ inputs.gh_name }}"
         git switch -c "coolbot/update"
         git add .
         git commit -m "Updating release for ${{ inputs.name }}-${{ inputs.version}}"
