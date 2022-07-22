@@ -70,4 +70,4 @@ runs:
         gh pr create \
           --title "Release for ${{inputs.name}}-${{inputs.version}}" \
           --body "Automated registry sync for ${{ inputs.name }} ${{ inputs.version }}"
-          --reviewers adrian-kong, isaactorz, silverjam
+          --reviewer adrian-kong,isaactorz,silverjam
