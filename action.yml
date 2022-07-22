@@ -45,7 +45,8 @@ runs:
         NAME: ${{ inputs.name }}
         VERSION: ${{ inputs.version }}
       run:
-        mv ../link_release.sh ../template.json .
+        ls ../
+        mv -v ../link_release.sh ../template.json ./
         bash link_release.sh
 
     - name: "Create pull request from changes"
