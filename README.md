@@ -5,13 +5,26 @@ Action to sync release updates to registrar
 
 ## Inputs
 
-- `token`: Private access token to provide access to private repos and to create pull requests under
-- `gh-name`: Github account name (needs to be fixed, defaults not working)
-- `gh-email`: Github account email (needs to be fixed, defaults not working)
+### Authentication inputs
+```diff
++ 'token': 
+Private access token to provide access to private repos and to create pull requests under
 
-- `name`: Name of the package to be updated
-- `version`: Version of release
+- 'gh-name': 
+Github account name (needs to be fixed, defaults not working)
 
+- 'gh-email': 
+Github account email (needs to be fixed, defaults not working)
+```
+
+### Release metadatas:
+```diff
++ 'name': 
+Name of the package to be updated
+
++ 'version': 
+Version of release
+```
 ## Example
 
 ```yml
