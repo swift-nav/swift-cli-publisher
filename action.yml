@@ -69,5 +69,5 @@ runs:
         git push --set-upstream origin coolbot/update-${{inputs.name}}-${{inputs.version}} -f
         gh pr create \
           --title "Release for ${{inputs.name}}-${{inputs.version}}" \
-          --body "Automated registry sync for ${{ inputs.name }} ${{ inputs.version }}"
+          --body "Automated registry sync for ${{ inputs.name }} ${{ inputs.version }}" \
           --reviewer adrian-kong,isaactorz,silverjam
