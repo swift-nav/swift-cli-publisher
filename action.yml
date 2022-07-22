@@ -58,8 +58,8 @@ runs:
       env:
         GH_TOKEN: ${{ inputs.token }}
       run: |
-        git config --global user.email "${{ inputs.gh_email }}"
-        git config --global user.name "${{ inputs.gh_name }}"
+        git config --global user.email "swiftnav-travis@swift-nav.com"
+        git config --global user.name "swiftnav-travis"
         git switch -c "coolbot/update"
         git add .
         git commit -m "Updating release for ${{ inputs.name }}-${{ inputs.version}}"
