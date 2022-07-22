@@ -66,7 +66,7 @@ runs:
         git switch -c "coolbot/update-${{inputs.name}}-${{inputs.version}}"
         git add .
         git commit -m "Updating release for ${{ inputs.name }}-${{ inputs.version}}"
-        git push --set-upstream origin coolbot/update-${{inputs.name}}-${{inputs.version}}
+        git push --set-upstream origin coolbot/update-${{inputs.name}}-${{inputs.version}} -f
         gh pr create \
           --title "Release for ${{inputs.name}}-${{inputs.version}}" \
           --body "Automated registry sync for ${{ inputs.name }} ${{ inputs.version }}"
