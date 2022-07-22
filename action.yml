@@ -50,15 +50,17 @@ runs:
 
     - name: "Create pull request from changes"
       shell: bash
+      working-directory: package-registry
       env:
         GH_TOKEN: ${{ inputs.token }}
       run: |
+        rm link_release.sh template.json
         git config --global user.email "swiftnav-travis@swift-nav.com"
         git config --global user.name "swiftnav-travis"
         git switch -c "coolbot/update-${{inputs.name}}-${{inputs.version}}"
         git add .
         git commit -m "Updating release for ${{ inputs.name }}-${{ inputs.version}}"
-        git push --set-upstream origin coolbot/update
+        git push --set-upstream origin coolbot/update-${{inputs.name}}-${{inputs.version}}
         
         gh pr create \
           --title "Release for ${{inputs.name}}-${{inputs.version}}" \
