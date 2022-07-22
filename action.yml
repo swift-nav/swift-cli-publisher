@@ -30,6 +30,10 @@ runs:
         token: ${{ inputs.token }}
         path: 'package-registry'
 
+    - name: "Move script into package-registry"
+      shell: bash
+      run: mv -v ../link_release.sh ../template.json ./
+
     - name: "Ensures release is not linked"
       shell: bash
       working-directory: package-registry
@@ -44,10 +48,7 @@ runs:
       env:
         NAME: ${{ inputs.name }}
         VERSION: ${{ inputs.version }}
-      run:
-        ls ../
-        mv -v ../link_release.sh ../template.json ./
-        bash link_release.sh
+      run: bash link_release.sh
 
     - name: "Create pull request from changes"
       shell: bash
