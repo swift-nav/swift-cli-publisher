@@ -1,5 +1,5 @@
 # swift-cli-publisher
-Action to sync release updates to registrar
+Action to sync release updates to [registrar](https://github.com/swift-nav/package-registry)
 
 ---
 
@@ -43,3 +43,5 @@ Version of release
     version: "1.3.0"
     token: ${{ secrets.SWIFTNAV_TRAVIS_GITHUB_TOKEN }}
 ```
+
+See usage in [main.yml](https://github.com/swift-nav/publish-test-adrian/blob/main/.github/workflows/main.yml)
