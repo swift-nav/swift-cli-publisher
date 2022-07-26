@@ -15,14 +15,6 @@ inputs:
     required: true
     default: "swiftnav-travis@swift-nav.com"
 
-  name:
-    description: "Name of package"
-    required: true
-
-  version:
-    description: "Version of release"
-    required: true
-
 runs:
   using: composite
   steps:
@@ -38,11 +30,18 @@ runs:
       shell: bash
       run: mv -v link_release.sh template.json package-registry
 
+    - name: "Store name and version env vars"
+      shell: bash
+      run: |
+        echo "NAME=${{ github.event.repository.name }}" >> $GITHUB_ENV
+        echo "VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
+        echo "Stored $NAME and $VERSION"
+
     - name: "Ensures release is not linked"
       shell: bash
       working-directory: package-registry
       run: |
-        if cat data/${{ inputs.name }} | grep "\"version\":\"${{ inputs.version }}\""; then
+        if cat data/${{ env.NAME }} | grep "\"version\":\"${{ env.VERSION }}\""; then
           exit 1
         fi
 
@@ -50,8 +49,8 @@ runs:
       shell: bash
       working-directory: package-registry
       env:
-        NAME: ${{ inputs.name }}
-        VERSION: ${{ inputs.version }}
+        NAME: ${{ env.NAME }}
+        VERSION: ${{ env.VERSION }}
       run: bash link_release.sh
 
     - name: "Create pull request from changes"
@@ -63,11 +62,11 @@ runs:
         rm link_release.sh template.json
         git config --global user.email "swiftnav-travis@swift-nav.com"
         git config --global user.name "swiftnav-travis"
-        git switch -c "coolbot/update-${{inputs.name}}-${{inputs.version}}"
+        git switch -c "coolbot/update-${{ env.NAME }}-${{ env.VERSION }}"
         git add .
-        git commit -m "Updating release for ${{ inputs.name }}-${{ inputs.version}}"
-        git push --set-upstream origin coolbot/update-${{inputs.name}}-${{inputs.version}} -f
+        git commit -m "Updating release for ${{ env.NAME }}-${{ env.VERSION }}"
+        git push --set-upstream origin coolbot/update-${{ env.NAME }}-${{ env.VERSION }} -f
         gh pr create \
-          --title "Release for ${{inputs.name}}-${{inputs.version}}" \
-          --body "Automated registry sync for ${{ inputs.name }} ${{ inputs.version }}" \
+          --title "Release for ${{ env.NAME }}-${{ env.VERSION }}" \
+          --body "Automated registry sync for ${{ env.NAME }} ${{ env.VERSION }}" \
           --reviewer adrian-kong,isaactorz,silverjam
