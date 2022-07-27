@@ -8,15 +8,15 @@ NEW_RELEASE=$(jq \
   --arg name "$NAME" \
   --arg version "$VERSION" \
   \
-  --arg base_dir_linux "${BASE_DIR[0]}" \
-  --arg base_dir_macos "${BASE_DIR[1]}" \
-  --arg base_dir_windows "${BASE_DIR[2]}" \
+  --arg dir_linux "${DIR_LINUX}" \
+  --arg dir_mac "${DIR_MAC}" \
+  --arg dir_win "${DIR_WIN}" \
   \
   --arg base_url "${BASE_URL}" \
   --arg project_slug "${PROJECT_SLUG:="swift-nav/$NAME"}" \
-  --arg download_linux "${DOWNLOAD_FILES[0]}" \
-  --arg download_macos "${DOWNLOAD_FILES[1]}" \
-  --arg download_windows "${DOWNLOAD_FILES[2]}" \
+  --arg dl_linux "${DL_LINUX}" \
+  --arg dl_mac "${DL_MAC}" \
+  --arg dl_win "${DL_WIN}" \
   \
   --arg tools "${TOOLS}" \
   --arg linked "${LINKED:=false}" \
@@ -24,23 +24,23 @@ NEW_RELEASE=$(jq \
   '.name=$name
   | .version=$version
 
-  | .base_dir.linux=$base_dir_linux
-  | .base_dir.macos=$base_dir_macos
-  | .base_dir.windows=$base_dir_windows
+  | .base_dir.linux=$dir_linux
+  | .base_dir.macos=$dir_mac
+  | .base_dir.windows=$dir_win
 
   | if .download.Web.base_url=="" then
   (
     .download.GitHub.project_slug=$project_slug
-    | .download.GitHub.linux=$download_linux
-    | .download.GitHub.macos=$download_macos
-    | .download.GitHub.windows=$download_windows
+    | .download.GitHub.linux=$dl_linux
+    | .download.GitHub.macos=$dl_mac
+    | .download.GitHub.windows=$dl_win
   )
   else
   (
     .download.Web.base_url=$base_url
-    | .download.Web.linux=$download_linux
-    | .download.Web.macos=$download_macos
-    | .download.Web.windows=$download_windows
+    | .download.Web.linux=$dl_linux
+    | .download.Web.macos=$dl_mac
+    | .download.Web.windows=$dl_win
   )
   end
 

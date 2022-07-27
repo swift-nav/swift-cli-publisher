@@ -10,7 +10,10 @@ Action to sync release updates to [registrar](https://github.com/swift-nav/packa
 - [Inputs](#inputs)
     - [Authentication Inputs](#authentication-inputs)
     - [Release metadata](#release-metadata)
+        - [Autofilled Variables](#autofilled-variables)
         - [Environment Variables](#environment-variables)
+            - [Required flags](#required)
+            - [Optional flags](#optional)
 - [Usage](#usage)
     - [Example](#example)
 
@@ -25,6 +28,8 @@ Generates templated metadata via jq (don't have to install excess tools) and ins
 into the registry
 
 Requires GitHub account to which pull request is created from
+
+---
 
 ## Inputs
 
@@ -48,30 +53,47 @@ from [swift-cli](https://github.com/swift-nav/swift-cli/blob/e6c6e72e76b89f99b26
 as being the simplest choice (assumes no modifications to template) without actually pulling swift-cli
 and serializing Package struct
 
-#### Environment Variables
+#### Autofilled Variables
 
 - `NAME` is provided via repository context from caller
 - `VERSION` is provided via repository context from caller
-- `BASE_DIR` the base directory array of binary of each OS
-    - Indexes:
-        - `0` - linux module
-        - `1` - macOS module
-        - `2` - windows module
-- `BASE_URL` corresponds to web download URL, providing this parameter opts for Web instead of GitHub
-- `PROJECT_SLUG` is autofilled with swift-nav owner unless provided otherwise
-- `DOWNLOAD_FILES` the paths/names array to download binaries for each OS
-    - Indexes:
-        - `0` - linux module
-        - `1` - macOS module
-        - `2` - windows module
+
+#### Environment Variables
+
+##### Required
+
+- `DIR_(LINUX|MAC|WIN)`: the base directory array of binary of each OS
+    - `DIR_LINUX` - linux module
+    - `DIR_MAC` - macOS module
+    - `DIR_WIN` - windows module
+- `DL_(LINUX|MAC|WIN)` the paths/names array to download binaries for each OS
+    - `DL_LINUX` - linux module
+    - `DL_MAC` - macOS module
+    - `DL_WIN` - windows module
 - `TOOLS` is the tool names, provided as string delimited by `,`
-- `LINKED` not sure what this is to be honest
+
+##### Optional
+
+- `BASE_URL` corresponds to web download URL, providing this parameter opts for Web instead of GitHub
+- `PROJECT_SLUG` in the format "ORG/NAME", defaults to `swift-nav/$NAME`
+- `LINKED` not sure what this is to be honest, defaults to false
+
+---
 
 ## Usage
 
 ```yml
+# Pull this script from marketplace
 - name: "Publish to package registry"
   uses: swift-nav/swift-cli-publisher@v1
+  env:
+    DIR_LINUX: "dir+linux"
+    DIR_MAC: "dir+mac"
+    DIR_WIN: "dir+win"
+    DL_LINUX: "dl+linux"
+    DL_MAC: "dl+mac"
+    DL_WIN: "dl+win"
+    TOOLS: "tool1,tool2"
   with:
     token: ${{ secrets.GITHUB_TOKEN }}
     gh-name: ${{ secrets.GITHUB_NAME }}
