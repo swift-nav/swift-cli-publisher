@@ -28,7 +28,7 @@ NEW_RELEASE=$(jq \
   | .base_dir.macos=$dir_mac
   | .base_dir.windows=$dir_win
 
-  | if .download.Web.base_url=="" then
+  | if $base_url=="" then
   (
     .download.GitHub.project_slug=$project_slug
     | .download.GitHub.linux=$dl_linux
