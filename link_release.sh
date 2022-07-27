@@ -9,8 +9,8 @@ NEW_RELEASE=$(jq \
   --arg version "$VERSION" \
   \
   --arg base_dir_linux "${BASE_DIR[0]}" \
-  --arg base_dir_macos "${BASE_DIR[0]}" \
-  --arg base_dir_windows "${BASE_DIR[0]}" \
+  --arg base_dir_macos "${BASE_DIR[1]}" \
+  --arg base_dir_windows "${BASE_DIR[2]}" \
   \
   --arg base_url "${BASE_URL}" \
   --arg project_slug "${PROJECT_SLUG:="swift-nav/$NAME"}" \
@@ -44,7 +44,7 @@ NEW_RELEASE=$(jq \
   )
   end
 
-  | .tools=[$tools]
+  | .tools=($tools | split(","))
   | .linked=$linked' \
   $TEMPLATE_FILE)
 

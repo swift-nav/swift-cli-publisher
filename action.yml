@@ -33,7 +33,6 @@ runs:
     - name: "Store name and version env vars"
       shell: bash
       run: |
-        echo $TEST_VARIABLE
         echo "NAME=${{ github.event.repository.name }}" >> $GITHUB_ENV
         echo "VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
         echo "Stored ${{ env.NAME }} and ${{ env.VERSION }}"
