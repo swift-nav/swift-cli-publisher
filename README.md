@@ -34,11 +34,11 @@ Requires GitHub account to which pull request is created from
 + 'token': 
 Private access token to provide access to private repos and to create pull requests under
 
-- 'gh-name': 
-Github account name (needs to be fixed, defaults not working)
++ 'gh-name': 
+Github account name
 
-- 'gh-email': 
-Github account email (needs to be fixed, defaults not working)
++ 'gh-email': 
+Github account email
 ```
 
 ### Release metadata
@@ -69,25 +69,13 @@ and serializing Package struct
 
 ## Usage
 
-Current usage requires checking out since private repo:
-
-//TODO: CHANGE TO PUBLIC REPO, MODIFY USAGE.
-
 ```yml
-# Needed to pull private repo with token
-- name: Get composite run steps repository
-  uses: actions/checkout@v3
+- name: "Publish to package registry"
+  uses: swift-nav/swift-cli-publisher@v1
   with:
-    repository: swift-nav/swift-cli-publisher
-    token: ${{ secrets.SWIFTNAV_TRAVIS_GITHUB_TOKEN }}
-
-# Run the composite action
-- name: Run action from private repo
-  uses: ./
-  with:
-    name: "esthri"
-    version: "1.3.0"
-    token: ${{ secrets.SWIFTNAV_TRAVIS_GITHUB_TOKEN }}
+    token: ${{ secrets.GITHUB_TOKEN }}
+    gh-name: ${{ secrets.GITHUB_NAME }}
+    gh-email: ${{ secrets.GITHUB_EMAIL }}
 ```
 
 ### Example

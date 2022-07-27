@@ -4,16 +4,12 @@ inputs:
   token:
     description: "Github Access Token"
     required: true
-
-  # not sure why defaults not working...
   gh-name:
     description: "Github account name"
     required: true
-    default: "swiftnav-travis"
   gh-email:
     description: "Github account email"
     required: true
-    default: "swiftnav-travis@swift-nav.com"
 
 runs:
   using: composite
@@ -60,8 +56,8 @@ runs:
         GH_TOKEN: ${{ inputs.token }}
       run: |
         rm link_release.sh template.json
-        git config --global user.email "swiftnav-travis@swift-nav.com"
-        git config --global user.name "swiftnav-travis"
+        git config --global user.email "${{ inputs.gh-email }}"
+        git config --global user.name "${{ inputs.gh-name }}"
         git switch -c "coolbot/update-${{ env.NAME }}-${{ env.VERSION }}"
         git add .
         git commit -m "Updating release for ${{ env.NAME }}-${{ env.VERSION }}"
