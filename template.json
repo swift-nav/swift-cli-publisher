@@ -6,14 +6,7 @@
     "macos": "",
     "windows": ""
   },
-  "download": {
-    "GitHub": {
-      "project_slug": "",
-      "linux": "",
-      "macos": "",
-      "windows": ""
-    }
-  },
+  "download": {},
   "tools": [],
   "linked": false
 }
