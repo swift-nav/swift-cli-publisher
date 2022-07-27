@@ -64,5 +64,5 @@ runs:
         git push --set-upstream origin coolbot/update-${{ env.NAME }}-${{ env.VERSION }} -f
         gh pr create \
           --title "Release for ${{ env.NAME }}-${{ env.VERSION }}" \
-          --body "Automated registry sync for ${{ env.NAME }} ${{ env.VERSION }}" \
+          --body "Automated registry sync for ${{ env.NAME }} created by tag ${{ env.VERSION }}" \
           --reviewer adrian-kong,isaactorz,silverjam
