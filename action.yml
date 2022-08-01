@@ -34,11 +34,7 @@ runs:
     - name: "Store name and version env vars"
       shell: bash
       run: |
-        if $NAME == ""; then
-          echo "NAME=${{ github.event.repository.name }}" >> $GITHUB_ENV
-        else
-          echo "NAME=$NAME" >> $GITHUB_ENVx
-        fi
+        echo "NAME=${NAME:-${{ github.event.repository.name }}}" >> $GITHUB_ENV
         echo "VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
         echo "Stored ${{ env.NAME }} and ${{ env.VERSION }}"
 
