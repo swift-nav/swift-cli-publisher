@@ -85,7 +85,7 @@ and serializing Package struct
 ```yml
 # Pull this script from marketplace
 - name: "Publish to package registry"
-  uses: swift-nav/swift-cli-publisher@v1
+  uses: swift-nav/swift-cli-publisher@v2
   env:
     DIR_LINUX: "dir+linux"
     DIR_MAC: "dir+mac"
