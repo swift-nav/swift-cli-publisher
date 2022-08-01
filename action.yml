@@ -16,6 +16,9 @@ runs:
   steps:
     - name: "Checkout swift-cli-publisher"
       uses: actions/checkout@v3
+      with:
+        repository: swift-nav/swift-cli-publisher
+
     # quick fix under path package-registry as clean doesn't work.
     - name: "Get package registry data"
       uses: actions/checkout@v3
