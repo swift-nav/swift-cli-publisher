@@ -48,4 +48,4 @@ NEW_RELEASE=$(jq \
   | .linked=$linked' \
   $TEMPLATE_FILE)
 
-printf '%s\n' 0a "$NEW_RELEASE" . x | ex data/"$NAME"
+printf "%s\n" "$NEW_RELEASE" >> data/"$NAME"
