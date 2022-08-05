@@ -19,7 +19,7 @@ NEW_RELEASE=$(jq \
   --arg dl_win "${DL_WIN}" \
   \
   --arg tools "${TOOLS}" \
-  --arg linked "${LINKED:=false}" \
+  --argjson linked "${LINKED:=false}" \
   --compact-output \
   '.name=$name
   | .version=$version
