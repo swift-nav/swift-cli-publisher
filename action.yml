@@ -37,7 +37,7 @@ runs:
       shell: bash
       run: |
         echo "NAME=${NAME:-${{ github.event.repository.name }}}" >> $GITHUB_ENV
-        echo "VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
+        echo "VERSION=${VERSION:-${GITHUB_REF##*/}}" >> $GITHUB_ENV
         echo "Stored ${{ env.NAME }} and ${{ env.VERSION }}"
 
     - name: "Ensures release is not linked"
