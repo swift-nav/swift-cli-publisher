@@ -55,8 +55,6 @@ and serializing Package struct
 
 #### Autofilled Variables
 
-- `VERSION` is provided via tag from caller
-
 #### Environment Variables
 
 ##### Required
@@ -74,6 +72,7 @@ and serializing Package struct
 ##### Optional
 
 - `NAME` corresponds to repository name, defaults to repo name where it is called from
+- `VERSION` corresponds to tag, defaults to tag where it is called from
 - `BASE_URL` corresponds to web download URL, providing this parameter opts for Web instead of GitHub
 - `PROJECT_SLUG` in the format "ORG/NAME", defaults to `swift-nav/$NAME`
 - `LINKED` not sure what this is to be honest, defaults to false
