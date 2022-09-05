@@ -55,6 +55,10 @@ runs:
         version: '${{ env.VERSION }}'
         file: '${{ env.DL_LINUX }}'
         token: ${{ inputs.token }}
+    
+    - name: "Linux retrieval debug"
+      shell: bash
+      run: find .
 
     - name: "Retrieve macos asset"
       uses: dsaltares/fetch-gh-release-asset@master
@@ -63,6 +67,10 @@ runs:
         version: '${{ env.VERSION }}'
         file: '${{ env.DL_MAC }}'
         token: ${{ inputs.token }}
+
+    - name: "Macos retrieval debug"
+      shell: bash
+      run: find .
 
     - name: "Modify data to link release"
       shell: bash
