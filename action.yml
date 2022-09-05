@@ -48,29 +48,28 @@ runs:
           exit 1
         fi
 
-    - name: "Retrieve linux asset"
-      uses: dsaltares/fetch-gh-release-asset@master
-      with:
-        repo: 'swift-nav/${{ env.NAME }}'
-        version: '${{ env.VERSION }}'
-        file: '${{ env.DL_LINUX }}'
-        token: ${{ inputs.token }}
+    - name: "Retrieve Linux asset"
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.token }}
+      run: |
+        gh release -R swift-nav/${{ env.NAME }} download ${{ env.VERSION }}
     
     - name: "Linux retrieval debug"
       shell: bash
       run: find .
 
-    - name: "Retrieve macos asset"
-      uses: dsaltares/fetch-gh-release-asset@master
-      with:
-        repo: 'swift-nav/${{ env.NAME }}'
-        version: '${{ env.VERSION }}'
-        file: '${{ env.DL_MAC }}'
-        token: ${{ inputs.token }}
+    # - name: "Retrieve macos asset"
+    #   uses: dsaltares/fetch-gh-release-asset@master
+    #   with:
+    #     repo: 'swift-nav/${{ env.NAME }}'
+    #     version: '${{ env.VERSION }}'
+    #     file: '${{ env.DL_MAC }}'
+    #     token: ${{ inputs.token }}
 
-    - name: "Macos retrieval debug"
-      shell: bash
-      run: find .
+    # - name: "Macos retrieval debug"
+    #   shell: bash
+    #   run: find .
 
     - name: "Modify data to link release"
       shell: bash
