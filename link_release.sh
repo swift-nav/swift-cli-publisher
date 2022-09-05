@@ -3,10 +3,13 @@ TEMPLATE_FILE="template.json"
 
 echo "Generating new $VERSION release for $NAME"
 
+# todo: add action to 
+# verify that file exists calc sha256
+
 # Should probably use serialization from Package struct
 NEW_RELEASE=$(jq \
   --arg name "$NAME" \
-  --arg version "$VERSION" \
+  --arg version "$VERSION" \ 
   \
   --arg dir_linux "${DIR_LINUX}" \
   --arg dir_mac "${DIR_MAC}" \
