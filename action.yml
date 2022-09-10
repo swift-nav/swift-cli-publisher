@@ -48,28 +48,21 @@ runs:
           exit 1
         fi
 
-    - name: "Retrieve Linux asset"
+    - name: "Retrieve assets"
       shell: bash
       env:
         GH_TOKEN: ${{ inputs.token }}
       run: |
-        gh release -R swift-nav/${{ env.NAME }} download ${{ env.VERSION }}
+        gh release -R swift-nav/${{ env.NAME }} download ${{ env.VERSION }} 
+
+    #TODO: Lessen number of files necessary to download by specifying which files to download (How?)
+    # - name: 
     
     - name: "Linux retrieval debug"
       shell: bash
-      run: find .
-
-    # - name: "Retrieve macos asset"
-    #   uses: dsaltares/fetch-gh-release-asset@master
-    #   with:
-    #     repo: 'swift-nav/${{ env.NAME }}'
-    #     version: '${{ env.VERSION }}'
-    #     file: '${{ env.DL_MAC }}'
-    #     token: ${{ inputs.token }}
-
-    # - name: "Macos retrieval debug"
-    #   shell: bash
-    #   run: find .
+      run: |
+        find .
+        shasum
 
     - name: "Modify data to link release"
       shell: bash
@@ -96,16 +89,4 @@ runs:
           --title "Release for ${{ env.NAME }}-${{ env.VERSION }}" \
           --body "Automated registry sync for ${{ env.NAME }} created by tag ${{ env.VERSION }}" \
           --reviewer adrian-kong,isaactorz,silverjam
-
-
-
-  # 1. need to fetch asset file (https://github.com/marketplace/actions/fetch-github-release-asset)
-  # 2. calculate file hash 
-  # 3.
-
-
-  # 2 parts
-  # saving the hash
-  # fetchign the hash (swift-cli)
-
-  #potential problem: github-actions vs jenkins timing (resolve by adding enforce versions flag)
+          

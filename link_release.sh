@@ -3,8 +3,27 @@ TEMPLATE_FILE="template.json"
 
 echo "Generating new $VERSION release for $NAME"
 
-# todo: add action to 
-# verify that file exists calc sha256
+# calculate local shas for binaries of each supported os. If a file does not exist, leave field blank.
+sha_linux=""
+sha_macos=""
+sha_windows=""
+if test -f "${DL_LINUX}";
+then 
+  echo hello
+  sha_linux=shasum -a 256 "$DL_LINUX"
+fi
+
+if test -f "${DL_MACOS}";
+then 
+  echo hello
+  sha_macos=shasum -a 256 "$DL_MACOS"
+fi
+
+if test -f "${DL_WIN}";
+then 
+  echo hello
+  sha_windows=shasum -a 256 "$DL_WIN"
+fi
 
 # Should probably use serialization from Package struct
 NEW_RELEASE=$(jq \
@@ -30,6 +49,10 @@ NEW_RELEASE=$(jq \
   | .base_dir.linux=$dir_linux
   | .base_dir.macos=$dir_mac
   | .base_dir.windows=$dir_win
+
+  | .sha256.linux=sha_linux
+  | .sha256.macos=sha_macos
+  | .sha256.windows=sha_windows
 
   | if $base_url=="" then
   (

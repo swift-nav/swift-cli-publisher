@@ -6,6 +6,11 @@
     "macos": "",
     "windows": ""
   },
+  "sha256": {
+    "linux": "",
+    "macos": "",
+    "windows": ""
+  },
   "download": {},
   "tools": [],
   "linked": false
