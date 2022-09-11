@@ -9,20 +9,20 @@ sha_macos=""
 sha_windows=""
 if test -f "${DL_LINUX}";
 then 
-  echo hello
   sha_linux=shasum -a 256 "$DL_LINUX"
+  echo $sha_linux
 fi
 
 if test -f "${DL_MACOS}";
 then 
-  echo hello
   sha_macos=shasum -a 256 "$DL_MACOS"
+  echo $sha_macos
 fi
 
 if test -f "${DL_WIN}";
 then 
-  echo hello
   sha_windows=shasum -a 256 "$DL_WIN"
+  echo $sha_windows
 fi
 
 # Should probably use serialization from Package struct
@@ -50,9 +50,9 @@ NEW_RELEASE=$(jq \
   | .base_dir.macos=$dir_mac
   | .base_dir.windows=$dir_win
 
-  | .sha256.linux=sha_linux
-  | .sha256.macos=sha_macos
-  | .sha256.windows=sha_windows
+  | .sha256.linux=$sha_linux
+  | .sha256.macos=$sha_macos
+  | .sha256.windows=$sha_windows
 
   | if $base_url=="" then
   (
