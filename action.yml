@@ -52,6 +52,7 @@ runs:
       shell: bash
       env:
         GH_TOKEN: ${{ inputs.token }}
+      working-directory: package-registry
       run: |
         gh release -R swift-nav/${{ env.NAME }} download ${{ env.VERSION }} 
 
@@ -82,7 +83,7 @@ runs:
         git config --global user.email "${{ inputs.gh-email }}"
         git config --global user.name "${{ inputs.gh-name }}"
         git switch -c "coolbot/update-${{ env.NAME }}-${{ env.VERSION }}"
-        git add .
+        git add data
         git commit -m "Updating release for ${{ env.NAME }}-${{ env.VERSION }}"
         git push --set-upstream origin coolbot/update-${{ env.NAME }}-${{ env.VERSION }} -f
         gh pr create \

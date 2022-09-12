@@ -12,19 +12,19 @@ sha_macos=""
 sha_windows=""
 if test -f "${DL_LINUX}";
 then 
-  sha_linux=$(shasum -a 256 ../"$DL_LINUX")
+  sha_linux=$(shasum -a 256 "$DL_LINUX")
   echo $sha_linux
 fi
 
 if test -f "${DL_MACOS}";
 then 
-  sha_macos=$(shasum -a 256 ../"$DL_MACOS")
+  sha_macos=$(shasum -a 256 "$DL_MACOS")
   echo $sha_macos
 fi
 
 if test -f "${DL_WIN}";
 then 
-  sha_windows=$(shasum -a 256 ../"$DL_WIN")
+  sha_windows=$(shasum -a 256 "$DL_WIN")
   echo $sha_windows
 fi
 
