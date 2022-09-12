@@ -52,7 +52,6 @@ runs:
       shell: bash
       env:
         GH_TOKEN: ${{ inputs.token }}
-      working-directory: package-registry
       run: |
         gh release -R swift-nav/${{ env.NAME }} download ${{ env.VERSION }} 
 
