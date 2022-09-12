@@ -4,31 +4,34 @@ TEMPLATE_FILE="template.json"
 echo "Generating new $VERSION release for $NAME"
 
 # calculate local shas for binaries of each supported os. If a file does not exist, leave field blank.
+# TODO use for array to clean up repeated ifs
+# TODO if file for shasum does not exist, use exit code to write to console
+# TODO verify that undeclared vars are init to "" and remove the below
 sha_linux=""
 sha_macos=""
 sha_windows=""
 if test -f "${DL_LINUX}";
 then 
-  sha_linux=shasum -a 256 "$DL_LINUX"
-  echo sha_linux
+  sha_linux=$(shasum -a 256 "$DL_LINUX")
+  echo $sha_linux
 fi
 
 if test -f "${DL_MACOS}";
 then 
-  sha_macos=shasum -a 256 "$DL_MACOS"
-  echo sha_macos
+  sha_macos=$(shasum -a 256 "$DL_MACOS")
+  echo $sha_macos
 fi
 
 if test -f "${DL_WIN}";
 then 
-  sha_windows=shasum -a 256 "$DL_WIN"
-  echo sha_windows
+  sha_windows=$(shasum -a 256 "$DL_WIN")
+  echo $sha_windows
 fi
 
 # Should probably use serialization from Package struct
 NEW_RELEASE=$(jq \
   --arg name "$NAME" \
-  --arg version "$VERSION" \ 
+  --arg version "$VERSION" \
   \
   --arg dir_linux "${DIR_LINUX}" \
   --arg dir_mac "${DIR_MAC}" \
@@ -78,4 +81,4 @@ NEW_RELEASE=$(jq \
   | .linked=$linked' \
   $TEMPLATE_FILE)
 
-printf "%s\n" "$NEW_RELEASE" >> data/"${NAME,,}"
+printf "%s\n" "$NEW_RELEASE" >> data/"${NAME}"
