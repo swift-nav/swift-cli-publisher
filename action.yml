@@ -42,9 +42,9 @@ runs:
 
     - name: "Ensures release is not linked"
       shell: bash
-      working-directory: package-registry
+      working-directory: package-registry/data
       run: |
-        if cat data/${NAME,,} | grep "\"version\":\"${{ env.VERSION }}\""; then
+        if cat $( find . -iname ${{ env.NAME }} ) | grep "\"version\":\"${{ env.VERSION }}\""; then
           exit 1
         fi
 
