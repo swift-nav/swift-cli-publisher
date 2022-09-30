@@ -44,7 +44,7 @@ runs:
       shell: bash
       working-directory: package-registry
       run: |
-        if cat data/${{ env.NAME }} | grep "\"version\":\"${{ env.VERSION }}\""; then
+        if cat data/${NAME,,} | grep "\"version\":\"${{ env.VERSION }}\""; then
           exit 1
         fi
 
@@ -55,15 +55,6 @@ runs:
       working-directory: package-registry
       run: |
         gh release -R swift-nav/${{ env.NAME }} download ${{ env.VERSION }} 
-
-    #TODO: Lessen number of files necessary to download by specifying which files to download (How?)
-    # - name: 
-    
-    - name: "Linux retrieval debug"
-      shell: bash
-      run: |
-        find .
-        shasum
 
     - name: "Modify data to link release"
       shell: bash
