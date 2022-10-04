@@ -44,7 +44,7 @@ runs:
       shell: bash
       working-directory: package-registry/data
       run: |
-        if cat $( find . -iname ${{ env.NAME }} ) | grep "\"version\":\"${{ env.VERSION }}\""; then
+        if cat ${NAME,,} | grep "\"version\":\"${{ env.VERSION }}\""; then
           exit 1
         fi
 
