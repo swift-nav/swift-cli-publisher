@@ -2,23 +2,24 @@
 TEMPLATE_FILE="template.json"
 
 echo "Generating new $VERSION release for $NAME"
+echo "debug"
 
 # can simplify this into a for loop...
 if test -f "${DL_LINUX}";
 then 
-  sha_linux=$(shasum -a 256 "$DL_LINUX" | cut -d ' ' -f 1)
+  sha_linux=$(shasum -a 256 $DL_LINUX | cut -d ' ' -f 1)
   echo $sha_linux
 fi
 
 if test -f "${DL_MAC}";
 then 
-  sha_macos=$(shasum -a 256 "$DL_MAC" | cut -d ' ' -f 1)
+  sha_macos=$(shasum -a 256 $DL_MAC | cut -d ' ' -f 1)
   echo $sha_macos
 fi
 
 if test -f "${DL_WIN}";
 then 
-  sha_windows=$(shasum -a 256 "$DL_WIN" | cut -d ' ' -f 1)
+  sha_windows=$(shasum -a 256 $DL_WIN | cut -d ' ' -f 1)
   echo $sha_windows
 fi
 
