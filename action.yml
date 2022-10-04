@@ -63,7 +63,6 @@ runs:
         NAME: ${{ env.NAME }}
         VERSION: ${{ env.VERSION }}
       run: |
-        ls
         bash link_release.sh
 
     - name: "Create pull request from changes"
