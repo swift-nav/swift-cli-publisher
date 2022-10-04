@@ -2,29 +2,24 @@
 TEMPLATE_FILE="template.json"
 
 echo "Generating new $VERSION release for $NAME"
+echo "debug"
 
-# calculate local shas for binaries of each supported os. If a file does not exist, leave field blank.
-# TODO use for array to clean up repeated ifs
-# TODO if file for shasum does not exist, use exit code to write to console
-# TODO verify that undeclared vars are init to "" and remove the below
-sha_linux=""
-sha_macos=""
-sha_windows=""
+# can simplify this into a for loop...
 if test -f "${DL_LINUX}";
 then 
-  sha_linux=$(shasum -a 256 "$DL_LINUX")
+  sha_linux=$(shasum -a 256 $DL_LINUX | cut -d ' ' -f 1)
   echo $sha_linux
 fi
 
-if test -f "${DL_MACOS}";
+if test -f "${DL_MAC}";
 then 
-  sha_macos=$(shasum -a 256 "$DL_MACOS")
+  sha_macos=$(shasum -a 256 $DL_MAC | cut -d ' ' -f 1)
   echo $sha_macos
 fi
 
 if test -f "${DL_WIN}";
 then 
-  sha_windows=$(shasum -a 256 "$DL_WIN")
+  sha_windows=$(shasum -a 256 $DL_WIN | cut -d ' ' -f 1)
   echo $sha_windows
 fi
 
