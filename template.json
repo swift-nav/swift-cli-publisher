@@ -11,7 +11,10 @@
     "macos": "",
     "windows": ""
   },
-  "download": {},
+  "download": {
+    "macos_x86": "",
+    "macos_arm64": ""
+  },
   "tools": [],
   "linked": false
 }
