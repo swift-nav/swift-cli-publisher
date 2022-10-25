@@ -11,7 +11,8 @@
     "macos": "",
     "windows": ""
   },
-  "download": {
+  "download": {},
+  "architecture": {
     "macos_x86": "",
     "macos_arm64": ""
   },
