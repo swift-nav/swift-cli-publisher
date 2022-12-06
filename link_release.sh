@@ -2,74 +2,52 @@
 TEMPLATE_FILE="template.json"
 
 echo "Generating new $VERSION release for $NAME"
-echo "debug"
 
-# can simplify this into a for loop...
-if test -f "${DL_LINUX}";
-then 
-  sha_linux=$(shasum -a 256 $DL_LINUX | cut -d ' ' -f 1)
-  echo $sha_linux
-fi
+DLS=("$DL_LINUX" "$DL_MAC" "$DL_WIN")
+DIR=("$DIR_LINUX" "$DIR_MAC" "$DIR_WIN")
 
-if test -f "${DL_MAC}";
-then 
-  sha_macos=$(shasum -a 256 $DL_MAC | cut -d ' ' -f 1)
-  echo $sha_macos
-fi
+LEN=${#DLS[@]}
 
-if test -f "${DL_WIN}";
-then 
-  sha_windows=$(shasum -a 256 $DL_WIN | cut -d ' ' -f 1)
-  echo $sha_windows
+for ((i=0; i<"$LEN"; i++)); do
+  curr_dl=${DLS[${i}]}
+  if test -f "$curr_dl"; then
+    SHA[$i]=$(shasum -a 256 "$curr_dl" | cut -d ' ' -f 1)
+    echo "sha[${i}] computed: ${SHA[$i]}"
+  fi
+done
+
+# shellcheck disable=SC2016
+platforms='{"linux": $linux,"macos": $mac,"windows": $win}'
+
+sha_struct=$(jq --null-input --arg linux "${SHA[0]}" --arg macos "${SHA[1]}" --arg win "${SHA[2]}" "$platforms")
+dir_struct=$(jq --null-input --arg linux "${DIR[0]}" --arg mac "${DIR[1]}" --arg win "${DIR[2]}" "$platforms")
+
+# JQ dl path can either be .download.Web or .download.GitHub
+if [[ $BASE_URL ]];
+then
+  JQ_DL_PATH="GitHub"
+  dl_struct=$(echo "$dl_struct" | jq --arg x "${PROJECT_SLUG:="swift-nav/$NAME"}" '.project_slug=$x')
+else
+  JQ_DL_PATH="Web"
+  dl_struct=$(echo "$dl_struct" | jq --arg x "$BASE_URL" '.base_url=$x')
 fi
 
 # Should probably use serialization from Package struct
 NEW_RELEASE=$(jq \
   --arg name "$NAME" \
   --arg version "$VERSION" \
-  \
-  --arg dir_linux "${DIR_LINUX}" \
-  --arg dir_mac "${DIR_MAC}" \
-  --arg dir_win "${DIR_WIN}" \
-  \
-  --arg sha_linux "${sha_linux}" \
-  --arg sha_macos "${sha_macos}" \
-  --arg sha_windows "${sha_windows}" \
-  \
-  --arg base_url "${BASE_URL}" \
-  --arg project_slug "${PROJECT_SLUG:="swift-nav/$NAME"}" \
-  --arg dl_linux "${DL_LINUX}" \
-  --arg dl_mac "${DL_MAC}" \
-  --arg dl_win "${DL_WIN}" \
-  \
+  --argjson bd "${dir_struct}" \
+  --argjson sha "${sha_struct}" \
+  --argjson dl "${dl_struct}" \
+  --arg jq_dl_path "${JQ_DL_PATH}" \
   --arg tools "${TOOLS}" \
   --argjson linked "${LINKED:=false}" \
   --compact-output \
   '.name=$name
   | .version=$version
-
-  | .base_dir.linux=$dir_linux
-  | .base_dir.macos=$dir_mac
-  | .base_dir.windows=$dir_win
-
-  | .sha256.linux=$sha_linux
-  | .sha256.macos=$sha_macos
-  | .sha256.windows=$sha_windows
-
-  | if $base_url=="" then
-  (
-    .download.GitHub.project_slug=$project_slug
-    | .download.GitHub.linux=$dl_linux
-    | .download.GitHub.macos=$dl_mac
-    | .download.GitHub.windows=$dl_win
-  )
-  else
-  (
-    .download.Web.base_url=$base_url
-    | .download.Web.linux=$dl_linux
-    | .download.Web.macos=$dl_mac
-    | .download.Web.windows=$dl_win
-  )
+  | .base_dir=$bd
+  | .sha256=$sha
+  | (.download | .[$jq_dl_path])=$dl
   end
 
   | .tools=($tools | split(","))
