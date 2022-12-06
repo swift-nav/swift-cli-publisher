@@ -19,8 +19,9 @@ done
 # shellcheck disable=SC2016
 platforms='{"linux": $linux,"macos": $mac,"windows": $win}'
 
-sha_struct=$(jq --null-input --arg linux "${SHA[0]}" --arg macos "${SHA[1]}" --arg win "${SHA[2]}" "$platforms")
+sha_struct=$(jq --null-input --arg linux "${SHA[0]}" --arg mac "${SHA[1]}" --arg win "${SHA[2]}" "$platforms")
 dir_struct=$(jq --null-input --arg linux "${DIR[0]}" --arg mac "${DIR[1]}" --arg win "${DIR[2]}" "$platforms")
+dl_struct=$(jq --null-input --arg linux "${DLS[0]}" --arg mac "${DLS[1]}" --arg win "${DLS[2]}" "$platforms")
 
 # JQ dl path can either be .download.Web or .download.GitHub
 if [[ $BASE_URL ]];
@@ -48,8 +49,6 @@ NEW_RELEASE=$(jq \
   | .base_dir=$bd
   | .sha256=$sha
   | (.download | .[$jq_dl_path])=$dl
-  end
-
   | .tools=($tools | split(","))
   | .linked=$linked' \
   $TEMPLATE_FILE)
