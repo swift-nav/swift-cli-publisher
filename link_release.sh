@@ -6,22 +6,43 @@ echo "Generating new $VERSION release for $NAME"
 DLS=("$DL_LINUX" "$DL_MAC" "$DL_WIN")
 DIR=("$DIR_LINUX" "$DIR_MAC" "$DIR_WIN")
 
-LEN=${#DLS[@]}
+DL_LINUX_ARCH=("$DL_LINUX_X86_64" "$DL_LINUX_AARCH64" "$DL_LINUX_ARM")
+DL_MAC_ARCH=("$DL_MAC_X86_64" "$DL_MAC_AARCH64" "$DL_MAC_ARM")
+DL_WIN_ARCH=("$DL_WIN_X86_64" "$DL_WIN_AARCH64" "$DL_WIN_ARM")
 
-for ((i=0; i<"$LEN"; i++)); do
+# shellcheck disable=SC2016
+arch_specific='{"x86_64":$x86_64,"aarch64":$aarch,"arm":$arm}'
+
+# Compute all architecture structs and shas
+for ((i=0; i<3; i++)); do # iterate over platforms, linux, mac, win
   curr_dl=${DLS[${i}]}
-  if test -f "$curr_dl"; then
-    SHA[$i]=$(shasum -a 256 "$curr_dl" | cut -d ' ' -f 1)
-    echo "sha[${i}] computed: ${SHA[$i]}"
+  if test -f "$curr_dl"; then # test whether file exists
+    NS_SHA[$i]=$(shasum -a 256 "$curr_dl" | cut -d ' ' -f 1)
+    echo "nonspecific sha[${i}] computed: ${NS_SHA[$i]}"
+    DLS[$i]='"'$curr_dl'"' # wrap with "" to parse as valid argjson
+  else
+    case ${i} in
+      0) platform=${DL_LINUX_ARCH[*]};;
+      1) platform=${DL_MAC_ARCH[*]};;
+      2) platform=${DL_WIN_ARCH[*]};;
+    esac
+    for ((j=0; j<${#platform[@]}; j++)); do
+      curr_dl=${platform[${j}]}
+      if test -f "$curr_dl"; then
+        S_SHA[$i]=$(shasum -a 256 "$curr_dl" | cut -d ' ' -f 1)
+        echo "specific sha[${i}][${j}] computed: ${S_SHA[$j]}"
+      fi
+    done
+
+
   fi
 done
 
 # shellcheck disable=SC2016
-platforms='{"linux": $linux,"macos": $mac,"windows": $win}'
 
 sha_struct=$(jq --null-input --arg linux "${SHA[0]}" --arg mac "${SHA[1]}" --arg win "${SHA[2]}" "$platforms")
 dir_struct=$(jq --null-input --arg linux "${DIR[0]}" --arg mac "${DIR[1]}" --arg win "${DIR[2]}" "$platforms")
-dl_struct=$(jq --null-input --arg linux "${DLS[0]}" --arg mac "${DLS[1]}" --arg win "${DLS[2]}" "$platforms")
+dl_struct=$(jq --null-input --argjson linux "${DLS[0]}" --argjson mac "${DLS[1]}" --argjson win "${DLS[2]}" "$platforms")
 
 # JQ dl path can either be .download.Web or .download.GitHub
 if [[ $BASE_URL ]];
