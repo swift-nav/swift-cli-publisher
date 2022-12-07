@@ -36,7 +36,7 @@ runs:
           exit 1
         fi
 
-    - name: Pull gen
+    - name: "Pull gen"
       shell: bash
       run: curl https://swiftnav-releases.s3.us-west-2.amazonaws.com/swift-cli/reg-gen -o gen
 
@@ -45,7 +45,9 @@ runs:
       env:
         NAME: ${{ env.NAME }}
         VERSION: ${{ env.VERSION }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
+        gh auth setup-git
         chmod +x ./gen
         ./gen
 
