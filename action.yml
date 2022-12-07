@@ -38,7 +38,7 @@ runs:
 
     - name: Pull gen
       shell: bash
-      run: curl https://swiftnav-releases.s3.us-west-2.amazonaws.com/swift-cli/install/bin/reg-gen -o gen
+      run: curl https://swiftnav-releases.s3.us-west-2.amazonaws.com/swift-cli/reg-gen -o gen
 
     - name: "Modify data to link release"
       shell: bash
