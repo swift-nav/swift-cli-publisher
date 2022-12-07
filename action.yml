@@ -45,7 +45,7 @@ runs:
       env:
         NAME: ${{ env.NAME }}
         VERSION: ${{ env.VERSION }}
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        GH_TOKEN: ${{ inputs.token }}
       run: |
         gh auth setup-git
         chmod +x ./gen
