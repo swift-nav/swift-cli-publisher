@@ -45,14 +45,14 @@ runs:
       env:
         NAME: ${{ env.NAME }}
         VERSION: ${{ env.VERSION }}
-      run: gen
+      run: ./gen
 
     - name: "Create pull request from changes"
       shell: bash
       env:
         GH_TOKEN: ${{ inputs.token }}
       run: |
-        rm gen
+        rm ./gen
         git config --global user.email "${{ inputs.gh-email }}"
         git config --global user.name "${{ inputs.gh-name }}"
         git switch -c "coolbot/update-${{ env.NAME }}-${{ env.VERSION }}"
