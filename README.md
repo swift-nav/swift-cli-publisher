@@ -24,8 +24,9 @@ Action to sync release updates to [registrar](https://github.com/swift-nav/packa
 Composite action aimed at hooking into release workflows of registered packages and
 automatically creating a pull request in the registrar.
 
-Generates templated metadata via jq (don't have to install excess tools) and inserts
-into the registry
+Pulls swift-cli's serde_json serialized Package struct passed via environment variables.
+
+Since most packages already uses the following template, the future will also follow this to reduce refactoring.
 
 Requires GitHub account to which pull request is created from
 
@@ -48,10 +49,8 @@ Github account email
 
 ### Release metadata
 
-Passed as environment variables, currently uses jq to create hardcoded :( template derived
+Passed as environment variables, using rust binary (hardcoded with env vars) :( template derived
 from [swift-cli](https://github.com/swift-nav/swift-cli/blob/e6c6e72e76b89f99b2684ec6703dff0c60a3737b/swift/src/types.rs#L18)
-as being the simplest choice (assumes no modifications to template) without actually pulling swift-cli
-and serializing Package struct
 
 #### Autofilled Variables
 
@@ -67,9 +66,13 @@ and serializing Package struct
     - `DL_LINUX` - linux module
     - `DL_MAC` - macOS module
     - `DL_WIN` - windows module
+- `(DL|DIR)_(LINUX|MAC|WIN)_(x86_64|aarch64|arm)` is the general pattern for arch specific entries
+  - i.e. if you need aarch64 support for linux in downloads it would be `DL_LINUX_aarch64`
 - `TOOLS` is the tool names, provided as string delimited by `,`
 
 ##### Optional
+
+Most "required" are also optional i.e. you don't need all 3 platforms
 
 - `NAME` corresponds to repository name, defaults to repo name where it is called from
 - `VERSION` corresponds to tag, defaults to tag where it is called from
@@ -92,6 +95,7 @@ and serializing Package struct
     DL_LINUX: "dl+linux"
     DL_MAC: "dl+mac"
     DL_WIN: "dl+win"
+    # add more if needed...
     TOOLS: "tool1,tool2"
   with:
     token: ${{ secrets.GITHUB_TOKEN }}

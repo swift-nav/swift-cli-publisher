@@ -14,24 +14,12 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: "Checkout swift-cli-publisher"
-      uses: actions/checkout@v3
-      with:
-        repository: swift-nav/swift-cli-publisher
-        ref: main
-
-    # quick fix under path package-registry as clean doesn't work.
     - name: "Get package registry data"
       uses: actions/checkout@v3
       with:
         repository: swift-nav/package-registry
         token: ${{ inputs.token }}
-        path: 'package-registry'
         ref: main
-
-    - name: "Move script into package-registry"
-      shell: bash
-      run: mv -v link_release.sh template.json package-registry
 
     - name: "Store name and version env vars"
       shell: bash
@@ -42,36 +30,31 @@ runs:
 
     - name: "Ensures release is not linked"
       shell: bash
-      working-directory: package-registry/data
+      working-directory: data
       run: |
         if cat ${NAME,,} | grep "\"version\":\"${{ env.VERSION }}\""; then
           exit 1
         fi
 
-    - name: "Retrieve assets"
+    - name: Pull gen
       shell: bash
-      env:
-        GH_TOKEN: ${{ inputs.token }}
-      working-directory: package-registry
-      run: |
-        gh release -R swift-nav/${{ env.NAME }} download ${{ env.VERSION }} 
+      run: curl https://swiftnav-releases.s3.us-west-2.amazonaws.com/swift-cli/reg-gen -o gen
 
     - name: "Modify data to link release"
       shell: bash
-      working-directory: package-registry
       env:
         NAME: ${{ env.NAME }}
         VERSION: ${{ env.VERSION }}
       run: |
-        bash link_release.sh
+        chmod +x ./gen
+        ./gen
 
     - name: "Create pull request from changes"
       shell: bash
-      working-directory: package-registry
       env:
         GH_TOKEN: ${{ inputs.token }}
       run: |
-        rm link_release.sh template.json
+        rm ./gen
         git config --global user.email "${{ inputs.gh-email }}"
         git config --global user.name "${{ inputs.gh-name }}"
         git switch -c "coolbot/update-${{ env.NAME }}-${{ env.VERSION }}"
