@@ -45,7 +45,9 @@ runs:
       env:
         NAME: ${{ env.NAME }}
         VERSION: ${{ env.VERSION }}
-      run: ./gen
+      run: |
+        chmod +x ./gen
+        ./gen
 
     - name: "Create pull request from changes"
       shell: bash
