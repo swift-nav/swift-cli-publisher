@@ -64,9 +64,9 @@ runs:
         git reset --hard main
         git add data
         git commit -m "Updating release for ${{ env.NAME }}-${{ env.VERSION }}"
-        git push origin coolbot/update-${{ env.NAME }}-${{ env.VERSION }} -f
+        git push origin $BRANCH -f
         gh pr create \
           --title "Release for ${{ env.NAME }}-${{ env.VERSION }}" \
           --body "Automated registry sync for ${{ env.NAME }} created by tag ${{ env.VERSION }}" \
-          --reviewer adrian-kong,isaactorz,silverjam
+          --reviewer swift-nav/devinfra
           
