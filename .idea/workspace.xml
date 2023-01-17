@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3a27ade2-6375-4854-b8ed-eb768c9bc5f3" name="Changes" comment="input token" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+      </list>
+    </option>
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="4i37f82e" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2CEpQmqB08ej0PIC2NuPtSqwC6w" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test" />
+      <recent name="$PROJECT_DIR$/data" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3a27ade2-6375-4854-b8ed-eb768c9bc5f3" name="Changes" comment="" />
+      <created>1658377585341</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1658377585341</updated>
+      <workItem from="1658377586613" duration="16947000" />
+      <workItem from="1658878564038" duration="8473000" />
+      <workItem from="1658965024101" duration="598000" />
+      <workItem from="1658971538528" duration="9000" />
+      <workItem from="1659310733530" duration="845000" />
+      <workItem from="1659315339891" duration="1195000" />
+      <workItem from="1659316575819" duration="60000" />
+      <workItem from="1659485016842" duration="2542000" />
+      <workItem from="1659497603735" duration="1477000" />
+      <workItem from="1659670228794" duration="1087000" />
+      <workItem from="1659914486722" duration="669000" />
+      <workItem from="1662959986166" duration="2396000" />
+      <workItem from="1663022365434" duration="85000" />
+      <workItem from="1670286340046" duration="13942000" />
+      <workItem from="1670322209598" duration="602000" />
+      <workItem from="1670326766561" duration="1672000" />
+      <workItem from="1670377231700" duration="184000" />
+      <workItem from="1670378097212" duration="4000" />
+      <workItem from="1670382580334" duration="808000" />
+      <workItem from="1670386582892" duration="344000" />
+      <workItem from="1670452498537" duration="130000" />
+      <workItem from="1670453012112" duration="8000" />
+      <workItem from="1670558594833" duration="428000" />
+      <workItem from="1670580629068" duration="1120000" />
+      <workItem from="1670586440035" duration="38000" />
+      <workItem from="1671490823628" duration="741000" />
+      <workItem from="1671582432420" duration="598000" />
+      <workItem from="1671612015109" duration="598000" />
+      <workItem from="1671614226751" duration="33000" />
+      <workItem from="1673914358730" duration="243000" />
+    </task>
+    <task id="LOCAL-00017" summary="extract cloned repo">
+      <created>1658446913452</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1658446913452</updated>
+    </task>
+    <task id="LOCAL-00018" summary="extract cloned repo">
+      <created>1658447082786</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1658447082786</updated>
+    </task>
+    <task id="LOCAL-00019" summary="debugging">
+      <created>1658447162877</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1658447162877</updated>
+    </task>
+    <task id="LOCAL-00020" summary="added output msg and fix to use bash">
+      <created>1658447514551</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1658447514551</updated>
+    </task>
+    <task id="LOCAL-00021" summary="supplying gh token">
+      <created>1658447590682</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1658447590682</updated>
+    </task>
+    <task id="LOCAL-00022" summary="pr head fix">
+      <created>1658447875322</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1658447875322</updated>
+    </task>
+    <task id="LOCAL-00023" summary="cleanup extracted package registry">
+      <created>1658448004872</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1658448004872</updated>
+    </task>
+    <task id="LOCAL-00024" summary="adding \">
+      <created>1658448106890</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1658448106890</updated>
+    </task>
+    <task id="LOCAL-00025" summary="using gh pr create">
+      <created>1658448311017</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1658448311017</updated>
+    </task>
+    <task id="LOCAL-00026" summary="commit and add branch">
+      <created>1658448607221</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1658448607221</updated>
+    </task>
+    <task id="LOCAL-00027" summary="add gh cred params">
+      <created>1658448801452</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1658448801452</updated>
+    </task>
+    <task id="LOCAL-00028" summary="add gh cred params">
+      <created>1658448870904</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1658448870904</updated>
+    </task>
+    <task id="LOCAL-00029" summary="push">
+      <created>1658448966561</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1658448966561</updated>
+    </task>
+    <task id="LOCAL-00030" summary="push">
+      <created>1658449035886</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1658449035886</updated>
+    </task>
+    <task id="LOCAL-00031" summary="push">
+      <created>1658449081018</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1658449081018</updated>
+    </task>
+    <task id="LOCAL-00032" summary="move into package-registry">
+      <created>1658449558349</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1658449558349</updated>
+    </task>
+    <task id="LOCAL-00033" summary="move into package-registry">
+      <created>1658449618249</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1658449618249</updated>
+    </task>
+    <task id="LOCAL-00034" summary="test commit">
+      <created>1658451037614</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1658451037614</updated>
+    </task>
+    <task id="LOCAL-00035" summary="test commit">
+      <created>1658451100829</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1658451100829</updated>
+    </task>
+    <task id="LOCAL-00036" summary="move into package-registry">
+      <created>1658451441453</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1658451441453</updated>
+    </task>
+    <task id="LOCAL-00037" summary="cleanup">
+      <created>1658451486634</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1658451486634</updated>
+    </task>
+    <task id="LOCAL-00038" summary="debug">
+      <created>1658451640187</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1658451640187</updated>
+    </task>
+    <task id="LOCAL-00039" summary="debug">
+      <created>1658451785437</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1658451785437</updated>
+    </task>
+    <task id="LOCAL-00040" summary="move into dir">
+      <created>1658451821738</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1658451821738</updated>
+    </task>
+    <task id="LOCAL-00041" summary="added reviewers">
+      <created>1658452152017</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1658452152017</updated>
+    </task>
+    <task id="LOCAL-00042" summary="force push">
+      <created>1658452400100</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1658452400101</updated>
+    </task>
+    <task id="LOCAL-00043" summary="typo">
+      <created>1658452443264</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1658452443264</updated>
+    </task>
+    <task id="LOCAL-00044" summary="reviewer">
+      <created>1658452582584</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1658452582584</updated>
+    </task>
+    <task id="LOCAL-00045" summary="added \">
+      <created>1658452645310</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1658452645310</updated>
+    </task>
+    <task id="LOCAL-00046" summary="storing name and version vars">
+      <created>1658878879328</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1658878879328</updated>
+    </task>
+    <task id="LOCAL-00047" summary="modified template, added web meta">
+      <created>1658883261514</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1658883261514</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Cleaning up and modified README">
+      <created>1658885121083</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1658885121083</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Updated README and gh email name">
+      <created>1658885931878</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1658885931878</updated>
+    </task>
+    <task id="LOCAL-00050" summary="flattened array to variables">
+      <created>1658887459249</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1658887459250</updated>
+    </task>
+    <task id="LOCAL-00051" summary="fix web - github switch">
+      <created>1658887669549</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1658887669549</updated>
+    </task>
+    <task id="LOCAL-00052" summary="modify pr body">
+      <created>1658887719623</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1658887719623</updated>
+    </task>
+    <task id="LOCAL-00053" summary="make name optional to fill">
+      <created>1659310881299</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1659310881299</updated>
+    </task>
+    <task id="LOCAL-00054" summary="updated readme.md, added NAME as optional env variable">
+      <created>1659310964199</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1659310964199</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Checkout current repo">
+      <created>1659315451069</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1659315451069</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Checkout current repo">
+      <created>1659315692873</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1659315692873</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Removed if else statement for optional NAME">
+      <created>1659315912723</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1659315912723</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Append to end of file">
+      <created>1659485182551</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1659485182551</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Parse linked boolean">
+      <created>1659670489536</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1659670489536</updated>
+    </task>
+    <task id="LOCAL-00060" summary="reformat to arrays">
+      <created>1670292005239</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1670292005240</updated>
+    </task>
+    <task id="LOCAL-00061" summary="argjson structs">
+      <created>1670293578976</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1670293578976</updated>
+    </task>
+    <task id="LOCAL-00062" summary="dls struct">
+      <created>1670296140939</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1670296140939</updated>
+    </task>
+    <task id="LOCAL-00063" summary="move entirely to compiled tool gen">
+      <created>1670327555148</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1670327555149</updated>
+    </task>
+    <task id="LOCAL-00064" summary="authenticate for gh release downloads">
+      <created>1670386055952</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1670386055953</updated>
+    </task>
+    <task id="LOCAL-00065" summary="input token">
+      <created>1670386629971</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1670386629971</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="move into dir" />
+    <MESSAGE value="added reviewers" />
+    <MESSAGE value="force push" />
+    <MESSAGE value="typo" />
+    <MESSAGE value="reviewer" />
+    <MESSAGE value="added \" />
+    <MESSAGE value="storing name and version vars" />
+    <MESSAGE value="modified template, added web meta" />
+    <MESSAGE value="Cleaning up and modified README" />
+    <MESSAGE value="Updated README and gh email name" />
+    <MESSAGE value="flattened array to variables" />
+    <MESSAGE value="fix web - github switch" />
+    <MESSAGE value="modify pr body" />
+    <MESSAGE value="make name optional to fill" />
+    <MESSAGE value="updated readme.md, added NAME as optional env variable" />
+    <MESSAGE value="Checkout current repo" />
+    <MESSAGE value="Removed if else statement for optional NAME" />
+    <MESSAGE value="Append to end of file" />
+    <MESSAGE value="Parse linked boolean" />
+    <MESSAGE value="reformat to arrays" />
+    <MESSAGE value="argjson structs" />
+    <MESSAGE value="dls struct" />
+    <MESSAGE value="move entirely to compiled tool gen" />
+    <MESSAGE value="authenticate for gh release downloads" />
+    <MESSAGE value="input token" />
+    <option name="LAST_COMMIT_MESSAGE" value="input token" />
+  </component>
+</project>
