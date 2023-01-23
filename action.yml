@@ -63,6 +63,8 @@ runs:
         git config --global user.name "${{ inputs.gh-name }}"
         git add data
         git commit -m "Updating release for ${{ env.NAME }}-${{ env.VERSION }}"
+        
+        git status
         (git push origin $BRANCH -f &> /dev/null) || (git push --set-upstream origin $BRANCH)
         gh pr create \
           --title "Release for ${{ env.NAME }}-${{ env.VERSION }}" \
