@@ -67,9 +67,13 @@ runs:
         git commit -m "Updating release for ${{ env.NAME }}-${{ env.VERSION }}"
         
         git status
-        (git push origin $BRANCH -f &> /dev/null) || (git push --set-upstream origin $BRANCH)
-        gh pr create \
-          --title "Release for ${{ env.NAME }}-${{ env.VERSION }}" \
-          --body "Automated registry sync for ${{ env.NAME }} created by tag ${{ env.VERSION }}" \
-          --reviewer swift-nav/devinfra
+        {
+          (git push --set-upstream origin $BRANCH &> /dev/null) &&
+          (gh pr create \
+            --title "Release for ${{ env.NAME }}-${{ env.VERSION }}" \
+            --body "Automated registry sync for ${{ env.NAME }} created by tag ${{ env.VERSION }}" \
+            --reviewer swift-nav/devinfra)
+        } || {
+          (git push origin $BRANCH -f)
+        }
           
