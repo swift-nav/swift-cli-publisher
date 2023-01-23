@@ -25,8 +25,6 @@ runs:
       shell: bash
       run: |
         echo "NAME=${NAME:-${{ github.event.repository.name }}}" >> $GITHUB_ENV
-        echo ${GITHUB_REF##*/}
-        echo $VERSION
         echo "VERSION=${VERSION:=${GITHUB_REF##*/}}" >> $GITHUB_ENV
         echo "Stored $NAME and $VERSION"
 
@@ -65,7 +63,7 @@ runs:
         git config --global user.name "${{ inputs.gh-name }}"
         git add data
         git commit -m "Updating release for ${{ env.NAME }}-${{ env.VERSION }}"
-        git push origin $BRANCH -f
+        (git push origin $BRANCH -f &> /dev/null) || (git push --set-upstream origin &BRANCH)
         gh pr create \
           --title "Release for ${{ env.NAME }}-${{ env.VERSION }}" \
           --body "Automated registry sync for ${{ env.NAME }} created by tag ${{ env.VERSION }}" \
