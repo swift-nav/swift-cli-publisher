@@ -26,7 +26,8 @@ runs:
       run: |
         echo "NAME=${NAME:-${{ github.event.repository.name }}}" >> $GITHUB_ENV
         echo "VERSION=${VERSION:=${GITHUB_REF##*/}}" >> $GITHUB_ENV
-        echo "Stored $NAME and $VERSION"
+        echo "BRANCH=coolbot/update-$NAME-$VERSION" >> $GITHUB_ENV
+        echo "Stored $NAME and $VERSION, attempting to create branch $BRANCH"
 
     - name: "Ensures release is not linked"
       shell: bash
@@ -49,7 +50,6 @@ runs:
       run: |
         gh auth setup-git
         (git show-branch $BRANCH &>/dev/null) && (git checkout $BRANCH) || (git checkout -b $BRANCH)
-        git status
         echo "checked out"
         git reset --hard origin/main
         git status
@@ -60,7 +60,6 @@ runs:
       shell: bash
       env:
         GH_TOKEN: ${{ inputs.token }}
-        BRANCH: coolbot/update-${{ env.NAME }}-${{ env.VERSION }}
       run: |
         git config --global user.email "${{ inputs.gh-email }}"
         git config --global user.name "${{ inputs.gh-name }}"
