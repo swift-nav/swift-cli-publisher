@@ -26,7 +26,7 @@ runs:
       run: |
         echo "NAME=${NAME:-${{ github.event.repository.name }}}" >> $GITHUB_ENV
         echo "VERSION=${VERSION:-${GITHUB_REF##*/}}" >> $GITHUB_ENV
-        echo "Stored ${{ env.NAME }} and ${{ env.VERSION }}"
+        echo "Stored $NAME and $VERSION"
 
     - name: "Ensures release is not linked"
       shell: bash
@@ -48,6 +48,8 @@ runs:
         GH_TOKEN: ${{ inputs.token }}
       run: |
         gh auth setup-git
+        (git show-branch $BRANCH &>/dev/null) && (git checkout $BRANCH) || (git checkout -b $BRANCH)
+        git reset --hard main
         chmod +x ./gen
         ./gen
 
@@ -57,11 +59,8 @@ runs:
         GH_TOKEN: ${{ inputs.token }}
         BRANCH: coolbot/update-${{ env.NAME }}-${{ env.VERSION }}
       run: |
-        rm ./gen
         git config --global user.email "${{ inputs.gh-email }}"
         git config --global user.name "${{ inputs.gh-name }}"
-        (git show-branch $BRANCH &>/dev/null) && (git checkout $BRANCH) || (git checkout -b $BRANCH)
-        git reset --hard main
         git add data
         git commit -m "Updating release for ${{ env.NAME }}-${{ env.VERSION }}"
         git push origin $BRANCH -f
