@@ -25,6 +25,8 @@ runs:
       shell: bash
       run: |
         echo "NAME=${NAME:-${{ github.event.repository.name }}}" >> $GITHUB_ENV
+        echo ${GITHUB_REF##*/}
+        echo $VERSION
         echo "VERSION=${VERSION:-${GITHUB_REF##*/}}" >> $GITHUB_ENV
         echo "Stored $NAME and $VERSION"
 
@@ -32,7 +34,7 @@ runs:
       shell: bash
       working-directory: data
       run: |
-        if cat ${NAME,,} | grep "\"version\":\"${{ env.VERSION }}\""; then
+        if cat ${NAME,,} | grep "\"version\":\"${VERSION}\""; then
           exit 1
         fi
 
