@@ -50,6 +50,7 @@ runs:
         gh auth setup-git
         (git show-branch $BRANCH &>/dev/null) && (git checkout $BRANCH) || (git checkout -b $BRANCH)
         git reset --hard main
+        git status
         chmod +x ./gen
         ./gen
 
