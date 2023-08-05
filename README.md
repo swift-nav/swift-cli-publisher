@@ -69,8 +69,8 @@ from [swift-cli](https://github.com/swift-nav/swift-cli/blob/e6c6e72e76b89f99b26
 - `(DL|DIR)_(LINUX|MAC|WIN)_(x86_64|aarch64|arm)` is the general pattern for arch specific entries
   - i.e. if you need aarch64 support for linux in downloads it would be `DL_LINUX_aarch64`
 - `LINKED_TOOLS` are the tool names that are linked into `~/.local/bin`, provided as string delimited by `,`
-- `UNLINKED_TOOLS` are the tool names that are NOT linked into `~/.local/bin`, provided as string delimited by `,`
-- `TOOLS` (deprecated) are the tool names, provided as string delimited by `,`
+- `UNLINKED_TOOLS` are the tool names that are *NOT* linked into `~/.local/bin`, provided as string delimited by `,`
+- `TOOLS` (deprecated) are the tool names, provided as string delimited by `,` -- these are by default linked into `~/.local/bin`
 
 ##### Optional
 
