@@ -1,6 +1,6 @@
 # swift-cli-publisher
 
-Action to sync release updates to [registrar](https://github.com/swift-nav/package-registry)
+Action to sync release updates to the [package registry](https://github.com/swift-nav/package-registry)
 
 ---
 
@@ -22,7 +22,7 @@ Action to sync release updates to [registrar](https://github.com/swift-nav/packa
 ## What it do?
 
 Composite action aimed at hooking into release workflows of registered packages and
-automatically creating a pull request in the registrar.
+automatically creating a pull request in the package registry.
 
 Pulls swift-cli's serde_json serialized Package struct passed via environment variables.
 
@@ -68,7 +68,9 @@ from [swift-cli](https://github.com/swift-nav/swift-cli/blob/e6c6e72e76b89f99b26
     - `DL_WIN` - windows module
 - `(DL|DIR)_(LINUX|MAC|WIN)_(x86_64|aarch64|arm)` is the general pattern for arch specific entries
   - i.e. if you need aarch64 support for linux in downloads it would be `DL_LINUX_aarch64`
-- `TOOLS` is the tool names, provided as string delimited by `,`
+- `LINKED_TOOLS` are the tool names that are linked into `~/.local/bin`, provided as string delimited by `,`
+- `UNLINKED_TOOLS` are the tool names that are *NOT* linked into `~/.local/bin`, provided as string delimited by `,`
+- `TOOLS` (deprecated) are the tool names, provided as string delimited by `,` -- these are by default linked into `~/.local/bin`
 
 ##### Optional
 
@@ -78,7 +80,7 @@ Most "required" are also optional i.e. you don't need all 3 platforms
 - `VERSION` corresponds to tag, defaults to tag where it is called from
 - `BASE_URL` corresponds to web download URL, providing this parameter opts for Web instead of GitHub
 - `PROJECT_SLUG` in the format "ORG/NAME", defaults to `swift-nav/$NAME`
-- `LINKED` not sure what this is to be honest, defaults to false
+- `LINKED` (deprecated) not used
 
 ---
 
@@ -96,7 +98,8 @@ Most "required" are also optional i.e. you don't need all 3 platforms
     DL_MAC: "dl+mac"
     DL_WIN: "dl+win"
     # add more if needed...
-    TOOLS: "tool1,tool2"
+    LINKED_TOOLS: "tool1,tool2"
+    UNLINKED_TOOLS: "tool3"
   with:
     token: ${{ secrets.GITHUB_TOKEN }}
     gh-name: ${{ secrets.GITHUB_NAME }}
