@@ -47,16 +47,16 @@ Github account name
 Github account email
 
 + 'aws-access-key-id':
-Optional: AWS access key ID used to provide access to the s3 bucket where the
-package is stored. Only required if using to publish binaries from an s3 bucket.
+Optional: AWS access key ID used to provide access to the s3 bucket where the package is
+stored. Only required if using to publish binaries from an s3 bucket.
 
 + 'aws-secret-access-key':
-Optional: AWS secret access key used to provide access to the s3 bucket where the
-package is stored. Only required if using to publish binaries from an s3 bucket.
+Optional: AWS secret access key used to provide access to the s3 bucket where the package
+is stored. Only required if using to publish binaries from an s3 bucket.
 
 + 'aws-access-region':
-Optional: AWS region to be used by the access key to log in.
-Only required if using to publish binaries from an s3 bucket.
+Optional: AWS region to be used by the access key to log in. Only required if using to
+publish binaries from an s3 bucket.
 ```
 
 ### Release metadata
