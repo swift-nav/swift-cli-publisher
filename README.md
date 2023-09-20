@@ -45,6 +45,18 @@ Github account name
 
 + 'gh-email': 
 Github account email
+
++ 'aws-access-key-id':
+Optional: AWS access key ID used to provide access to the s3 bucket where the
+package is stored. Only required if using to publish binaries from an s3 bucket.
+
++ 'aws-secret-access-key':
+Optional: AWS secret access key used to provide access to the s3 bucket where the
+package is stored. Only required if using to publish binaries from an s3 bucket.
+
++ 'aws-access-region':
+Optional: AWS region to be used by the access key to log in.
+Only required if using to publish binaries from an s3 bucket.
 ```
 
 ### Release metadata
@@ -81,6 +93,16 @@ Most "required" are also optional i.e. you don't need all 3 platforms
 - `BASE_URL` corresponds to web download URL, providing this parameter opts for Web instead of GitHub
 - `PROJECT_SLUG` in the format "ORG/NAME", defaults to `swift-nav/$NAME`
 - `LINKED` (deprecated) not used
+
+If the package is going to be pulled in from an S3 bucket, the following must all be set
+
+- `TOOL_SPECIFIC_SHA` will generate a SHA for each tool, not just the archive if any
+   non-empty value is given.
+- `S3_REGION` the region of the bucket that contains the package
+- `S3_BUCKET` Name of the bucket
+- `S3_PREFIX` The common prefix for all the platforms. The tools will sync all files
+with the prefix `<S3_PREFIX><DL_*>`, Note the lack of a joining character between
+the two.
 
 ---
 
