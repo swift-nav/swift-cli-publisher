@@ -100,9 +100,12 @@ If the package is going to be pulled in from an S3 bucket, the following must al
    non-empty value is given.
 - `S3_REGION` the region of the bucket that contains the package
 - `S3_BUCKET` Name of the bucket
-- `S3_PREFIX` The common prefix for all the platforms. The tools will sync all files
-with the prefix `<S3_PREFIX><DL_*>`, Note the lack of a joining character between
-the two.
+- `S3_PREFIX` A list of prefixes which are common across the platforms. The tools will sync all files
+with the prefix `<S3_PREFIX><DL_*>`, Note the lack of a joining character between the two. The prefixes
+must be separated by the <PREFIX_DELIMITER>.
+- `PREFIX_LIST_DELIMITER` Because s3 keys can be any valid UTF-8 string, there is an optional env var
+that can be set to specify what character splits the prefixes in the `S3_PREFIX` list. This var must
+only be one valid UTF-8 character. If let empty, the default value is `,`.
 
 ---
 
