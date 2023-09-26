@@ -10,6 +10,13 @@ inputs:
   gh-email:
     description: "Github account email"
     required: true
+  aws-access-key-id:
+    description: "AWS access key ID"
+  aws-secret-access-key:
+    description: "Github account name"
+  aws-access-region:
+    description: "The AWS Region used by the access credentials"
+
 
 runs:
   using: composite
@@ -21,6 +28,13 @@ runs:
         token: ${{ inputs.token }}
         ref: main
 
+    - name: Set up credentials
+      if: ${{ inputs.aws-access-key-id != '' }}
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ inputs.aws-access-key-id }}
+        aws-secret-access-key: ${{ inputs.secret-access-key }}
+        aws-region: ${{ inputs.aws-access-region }}
     - name: "Store name and version env vars"
       shell: bash
       run: |
