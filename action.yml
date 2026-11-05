@@ -22,7 +22,7 @@ runs:
   using: composite
   steps:
     - name: "Get package registry data"
-      uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3.7.0
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
         repository: swift-nav/package-registry
         token: ${{ inputs.token }}
@@ -30,7 +30,7 @@ runs:
 
     - name: Set up credentials
       if: ${{ inputs.aws-access-key-id != '' }}
-      uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4.3.1
+      uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
       with:
         aws-access-key-id: ${{ inputs.aws-access-key-id }}
         aws-secret-access-key: ${{ inputs.aws-secret-access-key }}
