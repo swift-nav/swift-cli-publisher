@@ -27,6 +27,7 @@ runs:
         repository: swift-nav/package-registry
         token: ${{ inputs.token }}
         ref: main
+        persist-credentials: false
 
     - name: Set up credentials
       if: ${{ inputs.aws-access-key-id != '' }}
@@ -35,19 +36,30 @@ runs:
         aws-access-key-id: ${{ inputs.aws-access-key-id }}
         aws-secret-access-key: ${{ inputs.aws-secret-access-key }}
         aws-region: ${{ inputs.aws-access-region }}
-    - name: "Store name and version env vars"
+    - name: "Store name and version"
+      id: release
       shell: bash
+      env:
+        REPO_NAME: ${{ github.event.repository.name }}
       run: |
-        echo "NAME=${NAME:=${{ github.event.repository.name }}}" >> $GITHUB_ENV
-        echo "VERSION=${VERSION:=${GITHUB_REF##*/}}" >> $GITHUB_ENV
-        echo "BRANCH=coolbot/update-$NAME-$VERSION" >> $GITHUB_ENV
+        NAME="${NAME:-$REPO_NAME}"
+        VERSION="${VERSION:-${GITHUB_REF##*/}}"
+        BRANCH="coolbot/update-$NAME-$VERSION"
+        {
+          echo "name=$NAME"
+          echo "version=$VERSION"
+          echo "branch=$BRANCH"
+        } >> "$GITHUB_OUTPUT"
         echo "Stored $NAME and $VERSION, attempting to create branch $BRANCH"
 
     - name: "Ensures release is not linked"
       shell: bash
       working-directory: data
+      env:
+        NAME: ${{ steps.release.outputs.name }}
+        VERSION: ${{ steps.release.outputs.version }}
       run: |
-        if cat ${NAME,,} | grep "\"version\":\"${VERSION}\""; then
+        if cat "${NAME,,}" | grep "\"version\":\"${VERSION}\""; then
           exit 1
         fi
 
@@ -58,12 +70,13 @@ runs:
     - name: "Modify data to link release"
       shell: bash
       env:
-        NAME: ${{ env.NAME }}
-        VERSION: ${{ env.VERSION }}
+        NAME: ${{ steps.release.outputs.name }}
+        VERSION: ${{ steps.release.outputs.version }}
+        BRANCH: ${{ steps.release.outputs.branch }}
         GH_TOKEN: ${{ inputs.token }}
       run: |
         gh auth setup-git
-        (git show-branch $BRANCH &>/dev/null) && (git checkout $BRANCH) || (git checkout -b $BRANCH)
+        (git show-branch "$BRANCH" &>/dev/null) && (git checkout "$BRANCH") || (git checkout -b "$BRANCH")
         echo "checked out"
         git reset --hard origin/main
         git status
@@ -73,21 +86,26 @@ runs:
     - name: "Create pull request from changes"
       shell: bash
       env:
+        NAME: ${{ steps.release.outputs.name }}
+        VERSION: ${{ steps.release.outputs.version }}
+        BRANCH: ${{ steps.release.outputs.branch }}
+        GH_EMAIL: ${{ inputs.gh-email }}
+        GH_NAME: ${{ inputs.gh-name }}
         GH_TOKEN: ${{ inputs.token }}
       run: |
-        git config --global user.email "${{ inputs.gh-email }}"
-        git config --global user.name "${{ inputs.gh-name }}"
+        git config --global user.email "$GH_EMAIL"
+        git config --global user.name "$GH_NAME"
         git add data
-        git commit -m "Updating release for ${{ env.NAME }}-${{ env.VERSION }}"
-        
+        git commit -m "Updating release for $NAME-$VERSION"
+
         git status
         {
-          (git push --set-upstream origin $BRANCH &> /dev/null) &&
+          (git push --set-upstream origin "$BRANCH" &> /dev/null) &&
           (gh pr create \
-            --title "Release for ${{ env.NAME }}-${{ env.VERSION }}" \
-            --body "Automated registry sync for ${{ env.NAME }} created by tag ${{ env.VERSION }}" \
+            --title "Release for $NAME-$VERSION" \
+            --body "Automated registry sync for $NAME created by tag $VERSION" \
             --reviewer swift-nav/devinfra)
         } || {
-          (git push origin $BRANCH -f)
+          (git push origin "$BRANCH" -f)
         }
           
